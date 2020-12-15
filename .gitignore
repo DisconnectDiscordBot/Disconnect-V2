@@ -1,2 +1,19 @@
+# Modules
+node_modules/
 
+# Desktop
+.vscode
 *.ini
+*.example
+
+# Logs
+logs/
+*.logs
+
+# Enviornments 
+*.env
+*.env.test
+*.env.example
+
+# Reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
