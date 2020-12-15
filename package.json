@@ -1,0 +1,27 @@
+{
+	"name": "disconnect",
+	"version": "1.0.0",
+	"description": "Disconnect is an entertainment focused discord bot.",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DevCytech/Disconnect.git"
+	},
+	"author": "Cytech",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DevCytech/Disconnect/issues"
+	},
+	"homepage": "https://github.com/DevCytech/Disconnect#readme",
+	"dependencies": {
+		"chalk": "^4.1.0",
+		"discord.js": "^12.5.1",
+		"dotenv": "^8.2.0",
+		"mongoose": "^5.11.7",
+		"winston": "^3.3.3"
+	}
+}
