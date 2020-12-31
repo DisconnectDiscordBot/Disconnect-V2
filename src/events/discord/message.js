@@ -25,7 +25,7 @@ client.on('message', async (message) => {
 	// If it starts with a ping
 	if (content.startsWith(mention)) {
 		return message.channel.send(
-			`Hello, I am ${client.user.username}! If you are looking for help use \`${prefix}help\`. For a list of commands use \`${prefix}command-list\``
+			`Hello, I am **${client.user.username}**! Please use \`${prefix}help\` for help!`,
 		);
 	}
 
@@ -38,12 +38,15 @@ client.on('message', async (message) => {
 	}
 
 	// Get the command
-	const cmd = args.shift();
+	const cmd = args.shift().toLowerCase();
 	const command = client.commands.get(cmd) || client.aliases.get(cmd);
 	if (!command) return;
 
 	// Check permissions
 
 	// Run Execute the command
-	console.log(command);
+	command.run({ client, message, args, guildData }).catch((err) => {
+		console.log(err);
+		message.reply('An error has occurred.');
+	});
 });

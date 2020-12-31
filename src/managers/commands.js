@@ -18,7 +18,7 @@ module.exports.fetchCommands = async (client) => {
 	if (commandFiles == null) return;
 	if (commandFiles.length <= 0)
 		return log.system.warn(
-			'There are no commands to load! continuing. . .'
+			'There are no commands to load! continuing. . .',
 		);
 
 	// Load the commands
@@ -27,7 +27,7 @@ module.exports.fetchCommands = async (client) => {
 		const file = require(path);
 
 		// Check the command
-		if (!file || !file.config || !file.execute) continue;
+		if (!file || !file.config || !file.run) continue;
 
 		// Destructuring the config
 		const { name, aliases, category } = file.config;
@@ -67,7 +67,7 @@ module.exports.fetchCommands = async (client) => {
 	logger.system.info(
 		`${client.commands.size} command${
 			client.commands.size > 1 ? 's' : ''
-		} have been loaded. . .`
+		} have been loaded. . .`,
 	);
 
 	// Alert us when all the aliases have finished loading
@@ -75,7 +75,7 @@ module.exports.fetchCommands = async (client) => {
 		return logger.system.info(
 			`${client.aliases.size} alias${
 				client.aliases.size > 1 ? 'es' : ''
-			} have been loaded. . .`
+			} have been loaded. . .`,
 		);
 	} else return;
 };
