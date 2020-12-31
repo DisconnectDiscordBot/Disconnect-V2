@@ -10,8 +10,8 @@ module.exports.fetchMember = (message, find = '') => {
 	if (!result && find) {
 		result = message.guild.members.cache.find((user) => {
 			return (
-				member.displayName.toLowerCase().includes(user) ||
-				member.user.tag.toLowerCase().includes(user)
+				user.displayName.toLowerCase().includes(find) ||
+				user.user.tag.toLowerCase().includes(find)
 			);
 		});
 	}
