@@ -20,12 +20,17 @@ module.exports.model = new model('guilds', guildSchema);
 
 // Get a guild
 module.exports.get = async (guild) => {
+	// Check if there is cached data
+	const cached = guildCaches.get(guild.id);
+	if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
+		return cached.data;
+
 	// Get the guild data
 	const guildData = await this.model
 		.findOne({ id: guild.id })
 		.catch((err) => {
 			log.database.error(
-				`There has been a problem loading guild data. Guild: ${guild.id}, error: ${err}`
+				`There has been a problem loading guild data. Guild: ${guild.id}, error: ${err}`,
 			);
 		});
 
@@ -41,6 +46,11 @@ module.exports.get = async (guild) => {
 		// Save and return data
 		await newGuild.save();
 		return newGuild;
+	}
+
+	// Cache Data
+	if (guildData) {
+		guildCaches.set(guild.id, { cacheTime: Date.now(), data: guildData });
 	}
 
 	// Return Data
