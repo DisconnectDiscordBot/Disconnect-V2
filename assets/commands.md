@@ -2,24 +2,35 @@
 
 ## Fun
 
--   8-ball
--   coin-flip
--   roll-dice
+-   8-ball ✔
+-   coin-flip ✔
+-   roll-dice ✔
 -   rock-paper-scissors
 -   russian-roulette
 -   slots
 -   meme
--   dad-joke
+-   dad-joke ✔
 -   random-advice
 -   random-fact
--   love-meter
--   shower-thought
+-   shower-thought ✔
 
-## Roleplay
+## Roleplay ✔
 
--   Hug
--   Pat
--   Wink
+-   hug
+-   pat
+-   wink
+-   boop
+-   feed
+-   fist-bump
+-   high-five
+-   kiss
+-   nuzzle
+-   pat
+-   poke
+-   punch
+-   slap
+-   tickle
+-   wink
 
 ## Images
 
@@ -33,15 +44,15 @@
 
 ## Text Modification (maybe make into a single command)
 
--   flip-text
+-   flip-text ✔
 -   owoify
 -   reverse
 -   yodaish (maybe remove)
 
 ## Information
 
--   user-info
--   role-info
+-   user-info ✔
+-   role-info ✔
 -   guild-info
 -   guild-emojis
 
@@ -59,16 +70,9 @@
 -   kick
 -   ban
 
-## Utilities
+## Utilities ✔
 
 -   help
 -   invite
 -   avatar
 -   bot-info
--   command-info
--   bot-stats
-
-## Developer
-
--   ping
--   uptime
