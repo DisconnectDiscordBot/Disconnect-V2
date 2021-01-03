@@ -56,7 +56,11 @@ module.exports.getTimeSince = function (date) {
 			  } ago`
 			: `${months} ${months !== 1 ? 'months' : 'month'} ago`;
 
-	return `${days} ${
-		days == 0 ? 'less than a day ago' : days !== 1 ? 'days' : 'day'
+	return `${
+		days == 0
+			? 'less than a day'
+			: days !== 1
+			? `${days} days`
+			: `${days}day`
 	} ago`;
 };
