@@ -44,8 +44,13 @@ client.on('message', async (message) => {
 
 	// Check permissions
 
+	// Temp User Data
+	const userData = {
+		premium: false,
+	};
+
 	// Run Execute the command
-	command.run({ client, message, args, guildData }).catch((err) => {
+	command.run({ client, message, args, guildData, userData }).catch((err) => {
 		console.log(err);
 		message.reply('An error has occurred.');
 	});
