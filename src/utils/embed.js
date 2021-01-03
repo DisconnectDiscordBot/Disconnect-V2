@@ -1,24 +1,18 @@
 // Variables
 const { client } = require('../bot');
-const { Collection, MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const palette = require('../../assets/config/colors.json');
-const check_mark = client.emojis.cache.get('');
 
-// Success Embeds
-module.exports.success = (res) => {
-	const successEmbed = new MessageEmbed().setTitle(`${check_mark} Success`);
-};
+// Emojis: ❌ ✔️
 
-// Error Embeds
-module.exports.improperUsage = (message) => {
-	const e = new MessageEmbed()
-		.setColor(palette.error)
-		.setDescription(message);
+// Improper Usage Embeds
+module.exports.improperUsage = (body) => {
+	const e = new MessageEmbed().setColor(palette.error).setDescription(body);
 	return e;
 };
 
 // Game Embeds
-module.exports.createEmbed = async ({ author, title, body, image }) => {
+module.exports.createEmbed = ({ author, title, body, image, footer }) => {
 	const e = new MessageEmbed().setColor(palette.secondary);
 
 	if (author) {
@@ -32,6 +26,16 @@ module.exports.createEmbed = async ({ author, title, body, image }) => {
 	if (title) e.setTitle(title);
 	if (body) e.setDescription(body);
 	if (image) e.setImage(image);
+	if (footer) e.setFooter(footer);
 
+	return e;
+};
+
+module.exports.createSuccessEmbed = (body) => {
+	const e = new MessageEmbed()
+		.setColor(palette.success)
+		.setDescription(
+			`${client.emojis.cache.get('795353967852519434')} ${body}`,
+		);
 	return e;
 };
