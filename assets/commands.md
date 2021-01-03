@@ -34,11 +34,11 @@
 
 ## Images
 
--   animal (combines all animal commands)
--   dog
--   cat
--   fox
--   food (anime food + coffee)
+-   animal (combines all animal commands) ✔
+-   dog ✔
+-   cat ✔
+-   fox ✔
+-   food (anime food + coffee) ✔
 -   gif (random or specified)
 -   achievement
 
@@ -53,12 +53,11 @@
 
 -   user-info ✔
 -   role-info ✔
--   guild-info
+-   guild-info ✔
 -   guild-emojis
 
-## NSFW (Will be slowly removing)
+## NSFW ✔
 
--   sexy-rate
 -   random-porn
 -   random-hentai
 -   rule-34
