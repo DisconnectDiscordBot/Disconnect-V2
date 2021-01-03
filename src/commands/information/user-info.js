@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const { fetchMember, formatDate, getTimeSince } = require('../../tools');
 const { secondary } = require('../../../assets/config/colors.json');
+const { fetchMember, formatDate, getTimeSince } = require('../../tools');
 
 module.exports.run = async ({ message, args }) => {
 	// Get user
@@ -30,13 +30,16 @@ module.exports.run = async ({ message, args }) => {
 				: member.displayHexColor,
 		)
 		.setDescription(
-			`**Joined Guild**: ${formatDate(member.joinedAt)} - ${getTimeSince(
+			`**Joined Guild**: ${formatDate(member.joinedAt)} (*${getTimeSince(
 				member.joinedAt,
-			)} \n**Account Created**: ${formatDate(
+			)}*) \n**Account Created**: ${formatDate(
 				member.user.createdAt,
-			)} - ${getTimeSince(member.user.createdAt)} ${
+			)} (*${getTimeSince(member.user.createdAt)}*) ${
 				member.lastMessage && member.lastMessage.content.length > 0
-					? `\n **Last Message**: ${member.lastMessage}`
+					? `\n **Last Message**: ${member.lastMessage.content.substring(
+							0,
+							50,
+					  )}`
 					: ''
 			}`,
 		)

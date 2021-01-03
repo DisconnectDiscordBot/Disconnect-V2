@@ -21,7 +21,7 @@ module.exports.run = async ({ message, args }) => {
 				role.members.size
 			}\n**Creation Date**: ${formatDate(
 				role.createdAt,
-			)} - ${getTimeSince(role.createdAt)}`,
+			)} (*${getTimeSince(role.createdAt)}*)`,
 		)
 		.setFooter(role.id);
 	return message.channel.send(e);
