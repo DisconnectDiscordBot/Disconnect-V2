@@ -1,18 +1,18 @@
 # Commands
 
-## Fun
+## Fun ✔
 
--   8-ball ✔
--   coin-flip ✔
--   roll-dice ✔
+-   8-ball
+-   coin-flip
+-   roll-dice
 -   rock-paper-scissors
 -   russian-roulette
 -   slots
 -   meme
--   dad-joke ✔
+-   dad-joke
 -   random-advice
 -   random-fact
--   shower-thought ✔
+-   shower-thought
 
 ## Roleplay ✔
 
@@ -42,18 +42,18 @@
 -   gif (random or specified)
 -   achievement
 
-## Text Modification (maybe make into a single command)
+## Text Modification
 
 -   flip-text ✔
 -   owoify
 -   reverse
--   yodaish (maybe remove)
+-   yodaish
 
-## Information
+## Information ✔
 
--   user-info ✔
--   role-info ✔
--   guild-info ✔
+-   user-info
+-   role-info
+-   guild-info
 -   guild-emojis
 
 ## NSFW ✔
@@ -62,7 +62,7 @@
 -   random-hentai
 -   rule-34
 
-## Moderation
+## Moderation ✔
 
 -   set-prefix
 -   purge
