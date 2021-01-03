@@ -12,6 +12,8 @@ const guildSchema = new Schema({
 	id: String,
 	name: String,
 	created: Date,
+	tips: { type: Boolean, default: false },
+	premium: { type: Boolean, default: false },
 	prefix: { type: String, default: prefix },
 });
 
