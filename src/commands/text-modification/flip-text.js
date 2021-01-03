@@ -7,11 +7,12 @@ module.exports.run = async ({ message, args }) => {
 			improperUsage('Please provide text you would like to flip.'),
 		);
 	else {
-		const e = await createEmbed({
-			title: 'I have flipped the text...',
-			body: await flipText(args.join(' ')),
-		});
-		return message.channel.send(e);
+		return message.channel.send(
+			createEmbed({
+				title: 'I have flipped the text...',
+				body: await flipText(args.join(' ')),
+			}),
+		);
 	}
 };
 

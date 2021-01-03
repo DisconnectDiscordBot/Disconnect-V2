@@ -7,10 +7,11 @@ module.exports.run = async ({ message }) => {
 		.get('https://nekobot.xyz/api/image')
 		.query({ type: foods[Math.floor(Math.random() * foods.length)] });
 
-	const e = await createEmbed({
-		image: imageResult.body.message,
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			image: imageResult.body.message,
+		}),
+	);
 };
 
 module.exports.config = {

@@ -4,11 +4,12 @@ const { createEmbed } = require('../../utils/embed');
 module.exports.run = async ({ message }) => {
 	const res = await agent.get('https://icanhazdadjoke.com/slack');
 
-	const e = await createEmbed({
-		title: 'Dad Joke',
-		body: res.body.attachments.map((a) => a.text),
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			title: 'Dad Joke',
+			body: res.body.attachments.map((a) => a.text),
+		}),
+	);
 };
 
 module.exports.config = {

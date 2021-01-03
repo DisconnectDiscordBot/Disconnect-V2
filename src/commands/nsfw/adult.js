@@ -7,11 +7,11 @@ module.exports.run = async ({ message, guildData, userData }) => {
 		.get('https://nekobot.xyz/api/image')
 		.query({ type: type[Math.floor(Math.random() * type.length)] });
 
-	const e = await createEmbed({
-		image: imageResult.body.message,
-	});
-
-	message.channel.send(e);
+	message.channel.send(
+		createEmbed({
+			image: imageResult.body.message,
+		}),
+	);
 
 	if (guildData.tips && !guildData.premium && !userData.premium) {
 		Math.floor(Math.random() * 25) == 9

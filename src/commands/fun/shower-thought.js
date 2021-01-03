@@ -15,11 +15,12 @@ module.exports.run = async ({ message }) => {
 			  ].data.title
 			: 'I can not think of any shower thoughts right now. But what about dad jokes?';
 
-	const e = await createEmbed({
-		title: 'Shower Thought',
-		body: thought,
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			title: 'Shower Thought',
+			body: thought,
+		}),
+	);
 };
 
 module.exports.config = {

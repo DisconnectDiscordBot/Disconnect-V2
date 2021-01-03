@@ -17,11 +17,12 @@ module.exports.run = async ({ message, args }) => {
 	// Get Image
 	const image = images[Math.floor(Math.random() * images.length)];
 
-	const e = await createEmbed({
-		title,
-		image,
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			title,
+			image,
+		}),
+	);
 };
 
 module.exports.config = {

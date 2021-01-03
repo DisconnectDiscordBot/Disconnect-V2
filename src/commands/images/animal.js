@@ -18,11 +18,12 @@ module.exports.run = async ({ message }) => {
 		`https://some-random-api.ml/facts/${search}`,
 	);
 
-	const e = await createEmbed({
-		body: factResult.body.fact,
-		image: imageResult.body.link,
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			body: factResult.body.fact,
+			image: imageResult.body.link,
+		}),
+	);
 };
 
 module.exports.config = {

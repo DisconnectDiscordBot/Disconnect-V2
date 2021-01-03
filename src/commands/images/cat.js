@@ -5,11 +5,12 @@ module.exports.run = async ({ message }) => {
 	const imageResult = await agent.get('https://some-random-api.ml/img/cat');
 	const factResult = await agent.get('https://some-random-api.ml/facts/cat');
 
-	const e = await createEmbed({
-		body: factResult.body.fact,
-		image: imageResult.body.link,
-	});
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			body: factResult.body.fact,
+			image: imageResult.body.link,
+		}),
+	);
 };
 
 module.exports.config = {

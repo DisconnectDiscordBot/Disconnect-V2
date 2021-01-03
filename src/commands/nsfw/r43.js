@@ -67,14 +67,12 @@ module.exports.run = async ({ message, args }) => {
 	const title = args.length < 1 ? result.data.title : `Result from ${search}`;
 	const image = args.length < 1 ? result.data.url : result.$.file_url;
 
-	console.log(image);
-
-	const e = await createEmbed({
-		title,
-		image,
-	});
-
-	return message.channel.send(e);
+	return message.channel.send(
+		createEmbed({
+			title,
+			image,
+		}),
+	);
 };
 
 module.exports.config = {
