@@ -46,15 +46,17 @@ module.exports.getTimeSince = function (date) {
 		return months !== 0
 			? `${years} ${years !== 1 ? 'years' : 'year'} and ${months} ${
 					months !== 1 ? 'months' : 'month'
-			  } ago.`
-			: `${years} ${years !== 1 ? 'years' : 'year'} ago.`;
+			  } ago`
+			: `${years} ${years !== 1 ? 'years' : 'year'} ago`;
 
 	if (months !== 0)
 		return days !== 0
 			? `${months} ${months !== 1 ? 'months' : 'month'} and ${days} ${
 					days !== 1 ? 'days' : 'day'
-			  } ago.`
-			: `${months} ${months !== 1 ? 'months' : 'month'} ago.`;
+			  } ago`
+			: `${months} ${months !== 1 ? 'months' : 'month'} ago`;
 
-	return `${days} ${days !== 0 ? 'days' : 'day'} ago.`;
+	return `${days} ${
+		days == 0 ? 'less than a day ago' : days !== 1 ? 'days' : 'day'
+	} ago`;
 };

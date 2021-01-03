@@ -19,7 +19,7 @@ module.exports.improperUsage = (message) => {
 
 // Game Embeds
 module.exports.createEmbed = async ({ author, title, body, image }) => {
-	const e = new MessageEmbed().setColor(palette.primary);
+	const e = new MessageEmbed().setColor(palette.secondary);
 
 	if (author) {
 		if (author.username)
