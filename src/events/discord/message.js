@@ -1,6 +1,6 @@
 // Variables
-const { MessageEmbed } = require('discord.js');
 const { client } = require('../../bot');
+const { improperUsage } = require('../../utils/embed');
 const settings = require('../../../assets/config/settings.json');
 
 // On Message
@@ -8,14 +8,19 @@ client.on('message', async (message) => {
 	// Deconstruct message
 	const { author, content, channel, guild } = message;
 
-	// XP System
-	// Economy System
 	// Pre Command Checks
 	if (author.bot || channel.type == 'dm') return;
 
 	// Get guild data
 	const { get: getGuild } = require('../../models/guilds');
 	const guildData = await getGuild(guild);
+
+	// Get User Data
+	const { get: getUser } = require('../../models/users');
+	const userData = await getUser(author);
+
+	// XP System
+	// Economy System
 
 	// Define information
 	const mention = `<@!${client.user.id}>`;
@@ -44,10 +49,12 @@ client.on('message', async (message) => {
 
 	// Check permissions
 
-	// Temp User Data
-	const userData = {
-		premium: false,
-	};
+	// Check NSFW
+	if (command.config.isNSFW && channel.nsfw === false) {
+		return message.channel.send(
+			improperUsage('This command may only be used in nsfw channels.'),
+		);
+	}
 
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
