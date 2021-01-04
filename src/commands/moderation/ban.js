@@ -1,4 +1,5 @@
 const { client } = require('../../bot');
+const logger = require('../../utils/logger');
 const { fetchMember } = require('../../tools');
 const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 
@@ -63,7 +64,7 @@ module.exports.run = async ({ message, args }) => {
 	try {
 		await member.ban({ reason });
 	} catch (err) {
-		console.log(err);
+		logger.client.error(err);
 		return message.channel.send(
 			improperUsage(
 				'There was an error trying to ban this member. Please try again later.',

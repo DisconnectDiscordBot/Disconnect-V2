@@ -4,7 +4,6 @@ const { getTimeSince, formatDate } = require('../../tools');
 const { regions } = require('../../../assets/responses/translation.json');
 
 module.exports.run = async ({ client, message }) => {
-	console.log(message.guild);
 	const e = new MessageEmbed()
 		.setColor(secondary)
 		.setTitle(message.guild.name)

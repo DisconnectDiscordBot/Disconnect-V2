@@ -1,3 +1,4 @@
+const logger = require('../../utils/logger');
 const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {
@@ -23,7 +24,7 @@ module.exports.run = async ({ message, args }) => {
 					'I am unable to delete messages over 14 days old! Sorry for the inconvenience.',
 				),
 			);
-		else console.log(err);
+		else logger.client.error(err);
 	}
 
 	if (deleted < 2) {

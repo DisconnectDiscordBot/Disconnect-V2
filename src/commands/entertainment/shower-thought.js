@@ -5,9 +5,11 @@ module.exports.run = async ({ message }) => {
 	const results = ({ body } = await agent
 		.get('https://www.reddit.com/r/Showerthoughts.json')
 		.query({ limit: 1000 }));
+
 	const approvedResults = message.channel.nsfw
 		? body.data.children
 		: body.data.children.filter((post) => !post.data.over_18);
+
 	const thought =
 		approvedResults.length > 0
 			? approvedResults[
