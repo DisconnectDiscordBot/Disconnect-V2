@@ -1,6 +1,8 @@
 // Variables
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, label, printf } = format;
+const { improperUsage } = require('../utils/embed');
+const { client: bot } = require('../bot');
 const chalk = require('chalk');
 
 // Formats
@@ -10,6 +12,16 @@ const logFormat = printf(({ level, timestamp, message, label }) => {
 });
 const consoleFormat = printf(({ level, timestamp, message, label }) => {
 	if (!message || !message.length) return '';
+
+	// Makeshift send messages to discord
+	if (level === 'error') {
+		bot.guilds.cache
+			.get('787145907065978921')
+			.channels.cache.get('792546154570973184')
+			.send(
+				improperUsage(`[${label}] [${timestamp}] ${level}: ${message}`),
+			);
+	}
 
 	// Colors
 	if (level === 'warn')
