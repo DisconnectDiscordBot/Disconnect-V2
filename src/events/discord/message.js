@@ -1,6 +1,7 @@
 // Variables
 const { client } = require('../../bot');
-const { improperUsage } = require('../../utils/embed');
+const logger = require('../../utils/logger');
+const { improperUsage, missingPermissions } = require('../../utils/embed');
 const settings = require('../../../assets/config/settings.json');
 
 // On Message
@@ -48,6 +49,42 @@ client.on('message', async (message) => {
 	if (!command) return;
 
 	// Check permissions
+	const member = message.member;
+	const clientMember = message.guild.members.cache.get(client.user.id);
+
+	// Make sure bot is able to respond
+	if (
+		!clientMember.hasPermission('SEND_MESSAGES') ||
+		!clientMember.hasPermission('EMBED_LINKS')
+	) {
+		return;
+	}
+
+	// Check user permissions
+	if (command.config.permissions) {
+		const missing = [];
+
+		for (const permission of command.config.permissions) {
+			if (!member.hasPermission(permission)) missing.push(permission);
+		}
+
+		if (missing.length > 0) {
+			return message.channel.send(missingPermissions('You are', missing));
+		}
+	}
+
+	// Check client permissions
+	if (command.config.clientPerms) {
+		const missing = [];
+
+		for (const permission of command.config.clientPerms) {
+			if (!member.hasPermission(permission)) missing.push(permission);
+		}
+
+		if (missing.length > 0) {
+			return message.channel.send(missingPermissions('I am', missing));
+		}
+	}
 
 	// Check NSFW
 	if (command.config.isNSFW && channel.nsfw === false) {
@@ -58,7 +95,11 @@ client.on('message', async (message) => {
 
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
-		console.log(err);
-		message.reply('An error has occurred.');
+		logger.client.error(err);
+		return message.channel.send(
+			improperUsage(
+				'An error has occurred while running the command. Please try again later.',
+			),
+		);
 	});
 });

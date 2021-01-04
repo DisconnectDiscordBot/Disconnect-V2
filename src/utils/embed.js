@@ -31,11 +31,21 @@ module.exports.createEmbed = ({ author, title, body, image, footer }) => {
 	return e;
 };
 
+// Success Embed
 module.exports.createSuccessEmbed = (body) => {
 	const e = new MessageEmbed()
 		.setColor(palette.success)
 		.setDescription(
 			`${client.emojis.cache.get('795353967852519434')} ${body}`,
 		);
+	return e;
+};
+
+// Missing Permissions
+module.exports.missingPermissions = (type, perms) => {
+	const e = new MessageEmbed()
+		.setColor(palette.error)
+		.setTitle(`${type} missing the following permissions`)
+		.setDescription(`• ${perms.join('\n• ')}`);
 	return e;
 };
