@@ -1,6 +1,9 @@
 # Modules
 node_modules/
 
+# Ideas and Notes
+ideas-notes/
+
 # Desktop
 .vscode
 *.ini
