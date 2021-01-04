@@ -1,6 +1,6 @@
 # Commands
 
-## Fun ✔
+## Fun
 
 -   8-ball
 -   coin-flip
@@ -14,7 +14,7 @@
 -   random-fact
 -   shower-thought
 
-## Roleplay ✔
+## Roleplay
 
 -   hug
 -   pat
@@ -34,42 +34,41 @@
 
 ## Images
 
--   animal (combines all animal commands) ✔
--   dog ✔
--   cat ✔
--   fox ✔
--   food (anime food + coffee) ✔
--   gif (random or specified)
+-   animal (combines all animal commands)
+-   dog
+-   cat
+-   fox
+-   food (anime food + coffee)
 -   achievement
 
 ## Text Modification
 
--   flip-text ✔
+-   flip-text
 -   owoify
 -   reverse
 -   yodaish
 
-## Information ✔
+## Information
 
 -   user-info
 -   role-info
 -   guild-info
 -   guild-emojis
 
-## NSFW ✔
+## NSFW
 
 -   random-porn
 -   random-hentai
 -   rule-34
 
-## Moderation ✔
+## Moderation
 
 -   set-prefix
 -   purge
 -   kick
 -   ban
 
-## Utilities ✔
+## Utilities
 
 -   help
 -   invite
