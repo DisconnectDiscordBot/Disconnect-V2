@@ -47,10 +47,13 @@ module.exports.get = async (guild) => {
 
 		// Save and return data
 		await newGuild.save();
+
+		// Cache and return data
+		guildCaches.set(guild.id, { cacheTime: Date.now(), data: newGuild });
 		return newGuild;
 	}
 
-	// Cache Data
+	// Cache data
 	if (guildData) {
 		guildCaches.set(guild.id, { cacheTime: Date.now(), data: guildData });
 	}
