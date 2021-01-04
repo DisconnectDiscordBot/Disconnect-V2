@@ -23,7 +23,6 @@ module.exports.run = async ({ client, message, args }) => {
 
 	const choice = args.join(' ').toLowerCase();
 	const rpsChoice = symbols[Math.floor(Math.random() * 3)];
-	console.log(rpsChoice);
 
 	const e = new MessageEmbed().setTitle('Rock Paper Scissors');
 

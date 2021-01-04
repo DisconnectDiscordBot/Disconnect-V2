@@ -9,7 +9,7 @@ module.exports.run = async ({ message, args }) => {
 	if (!member || typeof member !== 'object') {
 		return message.channel.send(
 			improperUsage(
-				`Please specify a user you would like to ban. \nIf you do not want to ping them you may use their id.`,
+				`Please specify a user you would like to kick. \nIf you do not want to ping them you may use their id.`,
 			),
 		);
 	}

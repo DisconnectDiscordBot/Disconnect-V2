@@ -19,7 +19,6 @@ const subReddits = [
 
 async function getFromReddit() {
 	const reddit = subReddits[Math.floor(Math.random() * subReddits.length)];
-	console.log(reddit);
 
 	const { body } = await agent
 		.get(`https://www.reddit.com/r/${reddit}.json?sort=top&t=week`)
