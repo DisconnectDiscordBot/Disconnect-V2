@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { secondary } = require('../../../assets/config/colors.json');
 
 module.exports.run = async ({ client, message, args }) => {
 	const symbols = [
@@ -24,7 +25,9 @@ module.exports.run = async ({ client, message, args }) => {
 	const choice = args.join(' ').toLowerCase();
 	const rpsChoice = symbols[Math.floor(Math.random() * 3)];
 
-	const e = new MessageEmbed().setTitle('Rock Paper Scissors');
+	const e = new MessageEmbed()
+		.setTitle('Rock Paper Scissors')
+		.setColor(secondary);
 
 	async function missingRPS() {
 		e.setDescription('Please select your pick below.');
