@@ -22,5 +22,5 @@ module.exports.run = async ({ message, args }) => {
 
 module.exports.config = {
 	name: 'achievement',
-	aliases: ['minecraft', 'mc'],
+	aliases: ['minecraft', 'mc', 'minecraft-achievement'],
 };
