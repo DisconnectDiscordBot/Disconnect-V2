@@ -24,6 +24,14 @@ module.exports.model = new model('guilds', guildSchema);
 module.exports.get = async (guild) => {
 	// Check if there is cached data
 	const cached = guildCaches.get(guild.id);
+
+	// Update Guild Name
+	if (cached && cached.data.name !== guild.name) {
+		cached.data.name = guild.name;
+		await cached.data.save();
+	}
+
+	// Return cached data if there is any
 	if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
 		return cached.data;
 

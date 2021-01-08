@@ -23,6 +23,14 @@ module.exports.model = new model('users', userSchema);
 module.exports.get = async (user) => {
 	// Check if there is cached data
 	const cached = userCache.get(user.id);
+
+	// Update usernames
+	if (cached && cached.data.name !== user.username) {
+		cached.data.name = user.username;
+		await cached.data.save();
+	}
+
+	// Return Cached data
 	if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
 		return cached.data;
 

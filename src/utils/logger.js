@@ -16,8 +16,8 @@ const consoleFormat = printf(({ level, timestamp, message, label }) => {
 	// Makeshift send messages to discord
 	if (level === 'error') {
 		bot.guilds.cache
-			.get('787145907065978921')
-			.channels.cache.get('792546154570973184')
+			.get('713612836961648680')
+			.channels.cache.get('796034828091916329')
 			.send(
 				improperUsage(`[${label}] [${timestamp}] ${level}: ${message}`),
 			);
