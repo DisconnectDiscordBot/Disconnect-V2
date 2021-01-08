@@ -1,2 +1,22 @@
+# Modules
+node_modules/
 
+# Ideas and Notes
+ideas-notes/
+
+# Desktop
+.vscode
 *.ini
+*.example
+
+# Logs
+logs/
+*.logs
+
+# Enviornments 
+*.env
+*.env.test
+*.env.example
+
+# Reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

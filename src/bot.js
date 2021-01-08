@@ -13,4 +13,4 @@ client.login(TOKEN);
 module.exports.client = client;
 
 // Startup the bot
-// require('./manager/ready')
+require('./managers/ready');
