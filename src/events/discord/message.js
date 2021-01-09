@@ -36,7 +36,7 @@ client.on('message', async (message) => {
 	}
 
 	// If it doesn't start with prefix return;
-	if (!content.startsWith(prefix)) return;
+	if (!content.startsWith(prefix) || !args[0]) return;
 
 	// Remove spaces
 	for (arg of args) {
@@ -94,7 +94,9 @@ client.on('message', async (message) => {
 	}
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
-		logger.client.error(`${err}`);
+		logger.client.error(
+			`${err} While trying to use command ${command.config.name} in command ${message.guild.id}`,
+		);
 		return message.channel.send(
 			improperUsage(
 				'An error has occurred while running the command. Please try again later.',
