@@ -158,6 +158,6 @@ module.exports.run = async ({ message, args }) => {
 };
 
 module.exports.config = {
-	name: 'guild-emojis',
-	aliases: ['emoji', 'emojis', 'server-emojis'],
+	name: 'emojis',
+	aliases: ['emoji', 'guild-emojis', 'server-emojis'],
 };
