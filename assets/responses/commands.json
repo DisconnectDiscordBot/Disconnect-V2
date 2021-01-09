@@ -1,0 +1,339 @@
+{
+	"commands": {
+		"fun": [
+			"8-ball",
+			"advice",
+			"dad-joke",
+			"fact",
+			"flip-coin",
+			"meme",
+			"rock-paper-scissors",
+			"roll-dice",
+			"russian-roulette",
+			"shower-thought",
+			"slots"
+		],
+		"images": ["achievement", "animal", "cat", "dog", "food", "fox"],
+		"info": [
+			"bot-info",
+			"command-info",
+			"command-list",
+			"emojis",
+			"guild-info",
+			"help",
+			"role-info",
+			"user-info"
+		],
+		"mod": ["ban", "kick", "purge", "set-prefix"],
+		"nsfw": ["porn", "hentai", "r34"],
+		"rp": [
+			"boop",
+			"feed",
+			"fist-bump",
+			"high-five",
+			"hug",
+			"kiss",
+			"nuzzle",
+			"pat",
+			"poke",
+			"punch",
+			"slap",
+			"tickle",
+			"wink"
+		],
+		"text-mod": ["flip-text", "owoify", "reverse", "yodish"],
+		"utility": ["avatar", "invite"]
+	},
+	"commandInfo": {
+		"----Fun Category": null,
+		"advice": {
+			"disc": "Get some random advice from Disconnect.",
+			"category": "fun"
+		},
+		"coin-flip": {
+			"disc": "Flip a coin. Will it land on heads? or tails?",
+			"category": "fun"
+		},
+		"dad-joke": {
+			"disc": "Want to hear a punny dad joke? I got a few you might like!",
+			"aliases": "dad",
+			"category": "fun"
+		},
+		"fact": {
+			"disc": "Fun Fact: This command is all about facts!",
+			"aliases": "fun-fact",
+			"category": "fun"
+		},
+		"meme": {
+			"disc": "Get some funny memes off of Reddit!",
+			"category": "fun"
+		},
+		"rock-paper-scissors": {
+			"disc": "Rock! Paper! Scissors! Says..! SHOOT!",
+			"usage": "rock-paper-scissors [rock || paper || scissors]",
+			"example": "rock-paper-scissors rock",
+			"aliases": "rps",
+			"category": "fun"
+		},
+		"roll-dice": {
+			"disc": "Roll a pair of dice and get your results.",
+			"aliases": "roll",
+			"category": "fun"
+		},
+		"russian-roulette": {
+			"disc": "1/6 Chance to survive? Will you spin the barrel?",
+			"category": "fun"
+		},
+		"shower-thought": {
+			"disc": "What do you think about in the shower?",
+			"aliases": "shower",
+			"category": "fun"
+		},
+		"slots": {
+			"disc": "Can you get three in a row to win?",
+			"category": "fun"
+		},
+		"8-ball": {
+			"disc": "What does the 8-ball predict?",
+			"aliases": "super-8-ball",
+			"category": "fun"
+		},
+
+		"----Images Category": null,
+		"achievement": {
+			"disc": "Create your own minecraft achievement!",
+			"usage": "achievement <text>",
+			"example": "achievement Using Disconnect",
+			"aliases": "mc, minecraft, minecraft-achievement",
+			"category": "images"
+		},
+		"animal": {
+			"disc": "Get a random picture and fact about an animal (Currently supporting only Koalas, Panda, and Birds",
+			"category": "images"
+		},
+		"cat": {
+			"disc": "Get a random picture and fact of a cat.",
+			"category": "images"
+		},
+		"dog": {
+			"disc": "Get a random picture and fact of a dog.",
+			"category": "images"
+		},
+		"food": {
+			"disc": "Get a random picture of anime food/ coffee.",
+			"category": "images"
+		},
+		"fox": {
+			"disc": "Get a random picture and fact of a fox.",
+			"category": "images"
+		},
+
+		"----Roleplay Category": null,
+		"boop": {
+			"disc": "Boop another member!",
+			"usage": "boop [member]",
+			"category": "rp"
+		},
+		"feed": {
+			"disc": "Feed another member!",
+			"usage": "feed [member]",
+			"category": "rp"
+		},
+		"fist-bump": {
+			"disc": "Fist bump another member!",
+			"usage": "fist-bump [member]",
+			"category": "rp"
+		},
+		"high-five": {
+			"disc": "High five another member!",
+			"usage": "high-five [member]",
+			"category": "rp"
+		},
+		"hug": {
+			"disc": "Hug another member!",
+			"usage": "hug [member]",
+			"category": "rp"
+		},
+		"kiss": {
+			"disc": "Kiss another member!",
+			"usage": "kiss [member]",
+			"category": "rp"
+		},
+		"nuzzle": {
+			"disc": "Nuzzle with another member!",
+			"usage": "nuzzle [member]",
+			"category": "rp"
+		},
+		"pat": {
+			"disc": "Pat another member!",
+			"usage": "pat [member]",
+			"category": "rp"
+		},
+		"poke": {
+			"disc": "Poke another member!",
+			"usage": "poke [member]",
+			"category": "rp"
+		},
+		"punch": {
+			"disc": "Punch another member!",
+			"usage": "Punch [member]",
+			"category": "rp"
+		},
+		"slap": {
+			"disc": "Slap another member!",
+			"usage": "slap [member]",
+			"category": "rp"
+		},
+		"tickle": {
+			"disc": "Tickle another member!",
+			"usage": "tickle [member]",
+			"category": "rp"
+		},
+		"wink": {
+			"disc": "Wink another member!",
+			"usage": "wink [member]",
+			"category": "rp"
+		},
+
+		"----Information Category": null,
+		"help": {
+			"disc": "Get help with using Disconnect!",
+			"aliases": "@Disconnect#2622",
+			"category": "info"
+		},
+		"command": {
+			"disc": "Get information on a command",
+			"aliases": "command-info",
+			"category": "info"
+		},
+		"commands": {
+			"disc": "Get a list of all the commands on Disconnect!",
+			"aliases": "command-list",
+			"category": "info"
+		},
+		"bot-info": {
+			"disc": "This command gives you a little bit of info on me. ",
+			"category": "info"
+		},
+		"emojis": {
+			"disc": "Want information on an emoji or want a list of all emojis on your guild?",
+			"usage": "emojis [emoji id]",
+			"example": "emojis 795353967852519434",
+			"category": "info"
+		},
+		"guild-info": {
+			"disc": "Get information on your guild.",
+			"aliases": "server-info",
+			"category": "info"
+		},
+		"role-info": {
+			"disc": "Get information on a role.",
+			"usage": "role-info [role id]",
+			"example": "role-info 713812465728749619",
+			"category": "info"
+		},
+		"user-info": {
+			"disc": "Get information on a user.",
+			"usage": "user-info [user id]",
+			"example": "user-info @Cytech#0001",
+			"category": "info"
+		},
+
+		"----Text Modification Category": null,
+		"flip-text": {
+			"disc": "Hey, why is my text upside down?",
+			"usage": "flip-text <text>",
+			"example": "flip-text This text is the right way up!",
+			"category": "text-mod"
+		},
+		"owoify": {
+			"disc": "This command makes youw text owo-ified ;;w;;",
+			"usage": "owoify <text>",
+			"example": "owoify This text is not owoified... yet!",
+			"aliases": "owoify-text",
+			"category": "text-mod"
+		},
+		"reverse": {
+			"disc": "This command makes your text the wrong way around!",
+			"usage": "reverse <text>",
+			"example": "reverse !dexif eb ot sdeen txet sihT",
+			"aliases": "reverse-text",
+			"category": "text-mod"
+		},
+		"yodish": {
+			"disc": "This command fixes your sentences. They Yoda way!",
+			"usage": "yodish <text>",
+			"example": "yodish Yoda is the grand master. Yes.",
+			"aliases": "yoda",
+			"category": "text-mod"
+		},
+
+		"----Moderation Category": null,
+		"ban": {
+			"disc": "Ban a user from your server!",
+			"perms": "Ban Members",
+			"usage": "ban <member>",
+			"example": "ban @Mee6#4876",
+			"category": "mod"
+		},
+		"kick": {
+			"disc": "kick a user from your server!",
+			"perms": "Kick Members",
+			"usage": "kick <member>",
+			"example": "kick @Mee6#4876",
+			"category": "mod"
+		},
+		"purge": {
+			"disc": "Purge/ delete a group of messages! (max of 100 messages)",
+			"perms": "Manage Messages",
+			"usage": "purge <amount>",
+			"example": "purge 100",
+			"aliases": "clear, bulk-delete",
+			"category": "mod"
+		},
+		"set-prefix": {
+			"disc": "Change your guilds prefix.",
+			"perms": "Manage Guild",
+			"usage": "set-prefix < prefix >",
+			"example": "prefix ?",
+			"aliases": "change-prefix",
+			"category": "mod"
+		},
+
+		"----NSFW Category": null,
+		"porn": {
+			"disc": "Get random images from multiple categories including: boos, ass, and pussy",
+			"category": "nsfw",
+			"isNSFW": true
+		},
+		"hentai": {
+			"disc": "Get random anime images from multiple categories including: boos, ass, and hentai",
+			"category": "nsfw",
+			"isNSFW": true
+		},
+		"rule-34": {
+			"disc": "Search Rule 34 for porn.",
+			"aliases": "r-34",
+			"category": "nsfw",
+			"isNSFW": true
+		},
+
+		"----Utilities Category": null,
+		"avatar": {
+			"disc": "Get another members profile picture!",
+			"aliases": "pfp, profile-picture",
+			"usage": "avatar [member]",
+			"example": "avatar @Disconnect#2622",
+			"category": "utility"
+		},
+		"invite": {
+			"disc": "Get invite information for Disconnect!",
+			"category": "utility"
+		},
+		"": {
+			"disc": "",
+			"aliases": "",
+			"category": ""
+		}
+	}
+}
