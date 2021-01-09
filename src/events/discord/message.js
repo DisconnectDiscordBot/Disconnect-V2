@@ -92,12 +92,15 @@ client.on('message', async (message) => {
 			improperUsage('This command may only be used in nsfw channels.'),
 		);
 	}
-
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
+<<<<<<< HEAD
 		logger.client.error(
 			`${err} While trying to use command ${command.config.name} in command ${message.guild.id}`,
 		);
+=======
+		logger.client.error(`${err}`);
+>>>>>>> 6411fb6... Minor Updates
 		return message.channel.send(
 			improperUsage(
 				'An error has occurred while running the command. Please try again later.',
