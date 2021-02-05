@@ -1,6 +1,6 @@
 const {
 	flip_text: flippedDictionary,
-} = require('../../assets/responses/translation.json');
+} = require('../../assets/translation.json');
 
 module.exports.flip_text = async (text) => {
 	const originalText = text.split('').reverse();

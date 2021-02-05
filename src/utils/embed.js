@@ -1,7 +1,7 @@
 // Variables
 const { client } = require('../bot');
 const { MessageEmbed } = require('discord.js');
-const palette = require('../../assets/config/colors.json');
+const palette = require('../../assets/colors.json');
 
 // Emojis: ❌ ✔️
 
