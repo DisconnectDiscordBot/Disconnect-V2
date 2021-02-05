@@ -1,5 +1,5 @@
 // Variables
-const { log } = require('../utils/logger');
+const log = require('../utils/logger');
 const { Schema, model } = require('mongoose');
 const { prefix } = require('../../assets/config.json');
 
