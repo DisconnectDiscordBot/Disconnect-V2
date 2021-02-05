@@ -1,11 +1,9 @@
 const { MessageEmbed } = require('discord.js');
 const { improperUsage } = require('../../utils/embed');
-const { primary } = require('../../../assets/config/colors.json');
-const { website } = require('../../../assets/config/settings.json');
-const { commandInfo } = require('../../../assets/responses/commands.json');
-const {
-	categories: translate,
-} = require('../../../assets/responses/translation.json');
+const { primary } = require('../../../assets/colors.json');
+const { website } = require('../../../assets/config.json');
+const { commandInfo } = require('../../../assets/commands.json');
+const { categories: translate } = require('../../../assets/translation.json');
 
 module.exports.run = async ({ client, message, guildData: guild, args }) => {
 	// Get Command
@@ -40,15 +38,17 @@ module.exports.run = async ({ client, message, guildData: guild, args }) => {
 		);
 	}
 
-	return message.channel.send(
-		`__${translate[info.category]} -> ${command.config.name}__ \n${
-			info.disc
-		} ${info.aliases ? `\n**Aliases**: ${info.aliases}` : ''} ${
-			info.usage ? `\n**Usage**: \`${info.usage}\`` : ''
-		} ${info.example ? `\n**Example**:\`${info.example}\`` : ''} ${
-			info.perms ? `\n**Required Permissions**: ${info.perms}` : ''
-		}`,
-	);
+	const e = new MessageEmbed()
+		.setTitle(`${translate[info.category]} -> ${command.config.name}`)
+		.setColor(primary);
+
+	if (info.disc) e.setDescription(info.disc);
+	if (info.aliases) e.addField('Aliases', info.aliases, true);
+	if (info.usage) e.addField('Usage', info.usage, true);
+	if (info.example) e.addField('Example', info.example, true);
+	if (info.perms) e.addField('Required Permissions', info.perms, true);
+
+	return message.channel.send(e);
 };
 
 module.exports.config = {

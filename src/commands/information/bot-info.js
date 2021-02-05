@@ -1,12 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { formatTimeSince } = require('../../tools');
-const {
-	website,
-	supportInvite,
-	creatorID,
-	inviteLink,
-} = require('../../../assets/config/settings.json');
-const { primary } = require('../../../assets/config/colors.json');
+const { website, creatorID } = require('../../../assets/config.json');
+const { primary } = require('../../../assets/colors.json');
 
 module.exports.run = async ({ client, message, guildData: guild }) => {
 	const e = new MessageEmbed()
@@ -15,7 +10,7 @@ module.exports.run = async ({ client, message, guildData: guild }) => {
 		.setTitle(client.user.username)
 		.setThumbnail(client.user.displayAvatarURL({ format: 'png' }))
 		.setDescription(
-			`**Username**: <@!${client.user.id}> \n**Creator**: <@!${creatorID}> \n**Guilds**: ${client.guilds.cache.size} \n\n• [Invite ${client.user.username}](${inviteLink}) \n• [Join Support Server](https://discord.gg/${supportInvite})\n• [Vote for ${client.user.username}s](https://top.gg/bot/${client.user.id}) \n• [${client.user.username}s Website](${website})`,
+			`**Username**: <@!${client.user.id}> \n**Creator**: <@!${creatorID}> \n**Guilds**: ${client.guilds.cache.size} \n\n• [Invite ${client.user.username}](${website}invite) \n• [Join Support Server](${website}support)\n• [Vote for ${client.user.username}s](https://top.gg/bot/${client.user.id}) \n• [${client.user.username}s Website](${website})`,
 		)
 		.setFooter(`Uptime: ${formatTimeSince(client.uptime)}`)
 		.setTimestamp();
