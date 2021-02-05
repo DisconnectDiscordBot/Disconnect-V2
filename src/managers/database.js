@@ -4,6 +4,7 @@ const { DATABASE_LINK: link } = process.env;
 
 // Define the database options
 const options = {
+	keepAlive: true,
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useUnifiedTopology: true,
