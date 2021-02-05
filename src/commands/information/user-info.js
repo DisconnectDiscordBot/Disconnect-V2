@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { secondary } = require('../../../assets/config/colors.json');
+const { secondary } = require('../../../assets/colors.json');
 const { fetchMember, formatDate, getTimeSince } = require('../../tools');
 
 module.exports.run = async ({ message, args }) => {

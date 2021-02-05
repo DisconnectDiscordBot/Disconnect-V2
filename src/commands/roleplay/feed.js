@@ -1,6 +1,6 @@
 const { fetchMember } = require('../../tools');
 const { createEmbed } = require('../../utils/embed');
-const { feed: images } = require('../../../assets/responses/links.json');
+const { feed: images } = require('../../../assets/links.json');
 
 module.exports.run = async ({ message, args }) => {
 	// Get user

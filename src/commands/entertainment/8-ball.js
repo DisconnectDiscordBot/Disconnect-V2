@@ -1,6 +1,4 @@
-const {
-	'eight-ball': responses,
-} = require('../../../assets/responses/text.json');
+const { 'eight-ball': responses } = require('../../../assets/responses.json');
 const { createEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {

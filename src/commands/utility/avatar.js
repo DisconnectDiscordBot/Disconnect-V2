@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { fetchMember } = require('../../tools');
-const { secondary } = require('../../../assets/config/colors.json');
+const { secondary } = require('../../../assets/colors.json');
 
 module.exports.run = async ({ message, args }) => {
 	// Get user

@@ -1,7 +1,7 @@
 const { MessageEmbed, Message } = require('discord.js');
-const { secondary } = require('../../../assets/config/colors.json');
+const { secondary } = require('../../../assets/colors.json');
 const { getTimeSince, formatDate } = require('../../tools');
-const { regions } = require('../../../assets/responses/translation.json');
+const { regions } = require('../../../assets/translation.json');
 
 module.exports.run = async ({ client, message }) => {
 	const e = new MessageEmbed()

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { success, error } = require('../../../assets/config/colors.json');
+const { success, error } = require('../../../assets/colors.json');
 const roulette = [
 	':gun: Pow! You are dead, try again?',
 	':gun: No bullet so ***you survived***! Would you like to try again?',

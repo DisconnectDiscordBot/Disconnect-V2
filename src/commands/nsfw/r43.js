@@ -1,4 +1,3 @@
-const { post } = require('superagent');
 const agent = require('superagent');
 const { promisifyAll } = require('tsubaki');
 const { parseStringAsync } = promisifyAll(require('xml2js'));
