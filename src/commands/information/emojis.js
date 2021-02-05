@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const colors = require('../../../assets/config/colors.json');
+const { secondary } = require('../../../assets/colors.json');
 const { formatDate, getTimeSince } = require('../../tools');
 
 function checkDays(date) {
@@ -54,7 +54,7 @@ module.exports.run = async ({ message, args }) => {
 							emoji.createdAt,
 						)} (*${getTimeSince(emoji.createdAt)}*)`,
 					)
-					.setColor(colors.info)
+					.setColor(secondary)
 					.setThumbnail(emoji.url);
 
 				return message.channel.send(e);
@@ -70,7 +70,7 @@ module.exports.run = async ({ message, args }) => {
 						.setAuthor('Guild Emoji list')
 						.setDescription('No emojis have been found.')
 
-						.setColor(colors.info);
+						.setColor(secondary);
 					return message.channel.send(e);
 				}
 
@@ -92,7 +92,7 @@ module.exports.run = async ({ message, args }) => {
 						else e.setDescription(ch.join('\n'));
 						e.setFooter(
 							`${arrLength} emojis found • Page ${i}/${pages}`,
-						).setColor(colors.info);
+						).setColor(secondary);
 
 						message.channel.send(e);
 						i++;
@@ -102,7 +102,7 @@ module.exports.run = async ({ message, args }) => {
 						.setAuthor('Guild Emoji list')
 						.setDescription(emojiList)
 						.setFooter(`${emojiList.length} emojis found`)
-						.setColor(colors.info);
+						.setColor(secondary);
 					return message.channel.send(e);
 				}
 			}
@@ -119,7 +119,7 @@ module.exports.run = async ({ message, args }) => {
 				.setAuthor('Guild Emoji list')
 				.setDescription('No emojis have been found.')
 
-				.setColor(colors.info);
+				.setColor(secondary);
 			return message.channel.send(e);
 		}
 
@@ -141,7 +141,7 @@ module.exports.run = async ({ message, args }) => {
 				else e.setDescription(ch.join('\n'));
 				e.setFooter(
 					`${arrLength} emojis found • Page ${i}/${pages}`,
-				).setColor(colors.info);
+				).setColor(secondary);
 
 				message.channel.send(e);
 				i++;
@@ -151,7 +151,7 @@ module.exports.run = async ({ message, args }) => {
 				.setAuthor('Guild Emoji list')
 				.setDescription(emojiList)
 				.setFooter(`${emojiList.length} emojis found`)
-				.setColor(colors.info);
+				.setColor(secondary);
 			return message.channel.send(e);
 		}
 	}
