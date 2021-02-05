@@ -1,6 +1,6 @@
 {
 	"name": "disconnect",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Disconnect is an entertainment focused discord bot.",
 	"main": "index.js",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"type": "git",
 		"url": "git+https://github.com/DevCytech/Disconnect.git"
 	},
-	"author": "Cytech",
+	"author": "DevCytech",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/DevCytech/Disconnect/issues"
