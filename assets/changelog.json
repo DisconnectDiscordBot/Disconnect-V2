@@ -1,0 +1,36 @@
+{
+	"2.0.0": {
+		"title": "Total Rewrite!",
+		"body": "Finally updating disconnect to modern standards... It's about time but its done!",
+		"changes": [
+			"Rewrote everything, concepts were the only things transferred over!",
+			"Noticeable Performance Increase / Better Optimization",
+			"No more undefined elements in the bot!",
+			"More of a universal look. Less randomness. But still as quirky as ever before! 🤪",
+			"Disconnect has a website now! ...Did you know that?",
+			"Blah Blah Blah a lot of cool changes... It's all new!"
+		],
+		"date": "January 8th, 2021"
+	},
+	"2.0.1": {
+		"title": "Version 2.0 Patches",
+		"body": "Bug patches and changed commands notably not running. Now including help commands.",
+		"changes": [
+			"Added help command, command list, and command information as they were forgotten in the last update. :(",
+			"Commands are now running properly and wont randomly not respond."
+		],
+		"date": "January 9th, 2021"
+	},
+	"2.0.2": {
+		"title": "Patched Help Command + More!",
+		"body": "I have seen many bots deleting the help message. Now switched to embeds to look nicer and well... respond.",
+		"changes": [
+			"Help message are now done in embeds along with command list and command information",
+			"Changed file resources around to different places to work better and not have such long file reach",
+			"Updated the disconnect invite not working and showing as undefined... Sorry",
+			"Added colors to the emojis command",
+			"Bot info links fixed"
+		],
+		"date": "February _rd, 2021"
+	}
+}
