@@ -1,7 +1,6 @@
 // Variables
 const { Collection } = require('discord.js');
 const { fetchFiles } = require('../utils/files');
-const logger = require('../utils/logger');
 const log = require('../utils/logger');
 
 // Setup commands
@@ -64,7 +63,7 @@ module.exports.fetchCommands = async (client) => {
 	}
 
 	// Alert us when the commands have finished loading
-	logger.system.info(
+	log.system.info(
 		`${client.commands.size} command${
 			client.commands.size > 1 ? 's' : ''
 		} have been loaded. . .`,
@@ -72,7 +71,7 @@ module.exports.fetchCommands = async (client) => {
 
 	// Alert us when all the aliases have finished loading
 	if (client.aliases.size > 0) {
-		return logger.system.info(
+		return log.system.info(
 			`${client.aliases.size} alias${
 				client.aliases.size > 1 ? 'es' : ''
 			} have been loaded. . .`,
