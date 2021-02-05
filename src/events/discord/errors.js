@@ -14,10 +14,9 @@ client.on('error', async (warning) => {
 
 // On Rate-limit
 client.on('rateLimit', async (rl) => {
-	setTimeout(
+	await setTimeout(function () {
 		logger.client.error(
 			`Rate Limit, Time out \`${rl.timeout}ms\`. Limit: \`${rl.limit}\`, and Information ${rl.method}. Misc ${rl.path} ${rl.route}`,
-		),
-		rl.timeout + 10,
-	);
+		);
+	}, rl.timeout + 10);
 });
