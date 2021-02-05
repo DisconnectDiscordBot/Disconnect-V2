@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { secondary } = require('../../../assets/config/colors.json');
+const { secondary } = require('../../../assets/colors.json');
 
 module.exports.run = async ({ client, message, args }) => {
 	const symbols = [
@@ -32,9 +32,15 @@ module.exports.run = async ({ client, message, args }) => {
 	async function missingRPS() {
 		e.setDescription('Please select your pick below.');
 		const msg = await message.channel.send(e);
-		await msg.react(symbols[0]);
-		await msg.react('📄');
-		await msg.react('✂');
+		await msg.react(symbols[0]).then(async () => {
+			setTimeout(
+				async () =>
+					await msg.react('📄').then(async () => {
+						setTimeout(async () => await msg.react('✂'), 1000);
+					}),
+				1000,
+			);
+		});
 
 		const collector = msg.createReactionCollector(filter, {
 			time: 60000,
