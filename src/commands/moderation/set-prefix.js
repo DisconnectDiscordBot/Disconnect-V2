@@ -1,4 +1,3 @@
-const { Message } = require('discord.js');
 const logger = require('../../utils/logger');
 const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 

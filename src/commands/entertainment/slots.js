@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { success, error } = require('../../../assets/config/colors.json');
+const { success, error } = require('../../../assets/colors.json');
 const symbols = ['🍎', '🍌', '🍒', '🍓', '🍈'];
 
 module.exports.run = async ({ message }) => {
