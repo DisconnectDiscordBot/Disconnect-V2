@@ -2,7 +2,7 @@
 const { client } = require('../../bot');
 const logger = require('../../utils/logger');
 const { improperUsage, missingPermissions } = require('../../utils/embed');
-const settings = require('../../../assets/config/settings.json');
+const settings = require('../../../assets/config.json');
 
 // On Message
 client.on('message', async (message) => {

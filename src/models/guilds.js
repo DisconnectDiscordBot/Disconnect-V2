@@ -1,7 +1,7 @@
 // Variables
 const { log } = require('../utils/logger');
 const { Schema, model } = require('mongoose');
-const { prefix } = require('../../assets/config/settings.json');
+const { prefix } = require('../../assets/config.json');
 
 // Cache System
 const { Collection } = require('discord.js');
