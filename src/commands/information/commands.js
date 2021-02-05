@@ -1,31 +1,35 @@
-const { website, prefix } = require('../../../assets/config/settings.json');
-const { commands } = require('../../../assets/responses/commands.json');
-const {
-	categories: translate,
-} = require('../../../assets/responses/translation.json');
+const { MessageEmbed } = require('discord.js');
+const { website } = require('../../../assets/config.json');
+const { version } = require('../../../package.json');
+const { primary } = require('../../../assets/colors.json');
+const changelog = require('../../../assets/changelog.json');
+const { commands } = require('../../../assets/commands.json');
+const { categories: translate } = require('../../../assets/translation.json');
 
 module.exports.run = async ({ client, message, guildData: guild }) => {
-	const categories = [];
+	// Send message
+	const e = new MessageEmbed()
+		.setTitle('Disconnect Command List')
+		.setURL(`${website}commands`)
+		.setColor(primary)
+		.setDescription(
+			`Version ${version} - **${changelog[version].title}** \n\`${client.commands.size}\` commands found and \`${client.aliases.size}\` aliases found.`,
+		);
 
-	// Get all commands sorted
+	// Set up categories
 	for (const category of Object.keys(commands)) {
+		if (category === 'nsfw' && message.channel.nsfw == false) continue;
 		const commandsFound = commands[category];
-
-		categories.push(
-			`**${translate[category]}** \n\`${commandsFound.join('`, `')}\``,
+		e.addField(
+			translate[category],
+			`\`${commandsFound.join('`, `')}\``,
+		).setFooter(
+			'Need information on a certain command? Use the command-information command',
 		);
 	}
 
-	// Send message
-	return message.channel.send(
-		`__Disconnect Command List__ \n*${
-			client.commands.size
-		} commands found...* \n\n${categories.join(
-			'\n\n',
-		)} \n\n**Want more detailed information?** \nCheck out <${website}commands.html> or use \`${
-			guild.prefix ? guild.prefix : prefix
-		}command-info [command]\``,
-	);
+	// Send Message
+	return message.channel.send(e);
 };
 
 module.exports.config = {

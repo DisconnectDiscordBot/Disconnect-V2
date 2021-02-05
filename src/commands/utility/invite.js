@@ -1,12 +1,20 @@
-const {
-	inviteLink,
-	supportInvite,
-} = require('../../../assets/config/settings.json');
+const { MessageEmbed } = require('discord.js');
+const { primary } = require('../../../assets/colors.json');
+const { website } = require('../../../assets/config.json');
 
 module.exports.run = async ({ message, client }) => {
-	return message.channel.send(
-		`**Looking for support?** \nJoin our support server at https://discord.gg/${supportInvite} \n\n**Looking to invite ${client.user.username}?** \nInvite using <${inviteLink}>`,
-	);
+	const e = new MessageEmbed()
+		.setTitle('Disconnect Invites')
+		.setColor(primary)
+		.addField(
+			'Looking for support?',
+			`[Join the Disconnect Support Server](${website}support)`,
+		)
+		.addField(
+			'Looking to invite Disconnect?',
+			`[Invite Disconnect](${website}invite)`,
+		);
+	return message.channel.send(e);
 };
 
 module.exports.config = {
