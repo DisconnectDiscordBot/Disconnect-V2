@@ -94,8 +94,9 @@ client.on('message', async (message) => {
 	}
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
+		logger.client.info(err);
 		logger.client.error(
-			`${err} While trying to use command ${command.config.name} in command ${message.guild.id}`,
+			`${err.message} While trying to use command ${command.config.name} in command ${message.guild.id}`,
 		);
 		return message.channel.send(
 			improperUsage(
