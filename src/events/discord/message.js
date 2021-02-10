@@ -12,6 +12,17 @@ client.on('message', async (message) => {
 	// Pre Command Checks
 	if (author.bot || channel.type == 'dm') return;
 
+	// Pre command permission checks
+	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
+		return;
+	}
+
+	if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) {
+		return message.channel.send(
+			'Many of my responses require permission to embed links. Please give me permission to do this if you would like me to run this command.',
+		);
+	}
+
 	// Get guild data
 	const { get: getGuild } = require('../../models/guilds');
 	const guildData = await getGuild(guild);
@@ -65,7 +76,8 @@ client.on('message', async (message) => {
 		const missing = [];
 
 		for (const permission of command.config.permissions) {
-			if (!member.hasPermission(permission)) missing.push(permission);
+			if (!message.channel.permissionsFor(message.author).has(permission))
+				missing.push(permission);
 		}
 
 		if (missing.length > 0) {
@@ -78,14 +90,14 @@ client.on('message', async (message) => {
 		const missing = [];
 
 		for (const permission of command.config.clientPerms) {
-			if (!member.hasPermission(permission)) missing.push(permission);
+			if (!message.channel.permissionsFor(client.user).has(permission))
+				missing.push(permission);
 		}
 
 		if (missing.length > 0) {
 			return message.channel.send(missingPermissions('I am', missing));
 		}
 	}
-
 	// Check NSFW
 	if (command.config.isNSFW && channel.nsfw === false) {
 		return message.channel.send(
