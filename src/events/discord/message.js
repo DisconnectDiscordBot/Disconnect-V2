@@ -17,12 +17,6 @@ client.on('message', async (message) => {
 		return;
 	}
 
-	if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) {
-		return message.channel.send(
-			'Many of my responses require permission to embed links. Please give me permission to do this if you would like me to run this command.',
-		);
-	}
-
 	// Get guild data
 	const { get: getGuild } = require('../../models/guilds');
 	const guildData = await getGuild(guild);
@@ -63,6 +57,13 @@ client.on('message', async (message) => {
 	const member = message.member;
 	const clientMember = message.guild.members.cache.get(client.user.id);
 
+	// Make sure the bot can send embeds
+	if (!message.channel.permissionsFor(client.user).has('EMBED_LINKS')) {
+		return message.channel.send(
+			'Many of my responses require permission to embed links. Please give me permission to do this if you would like me to run this command.',
+		);
+	}
+	
 	// Make sure bot is able to respond
 	if (
 		!clientMember.hasPermission('SEND_MESSAGES') ||
