@@ -1,7 +1,7 @@
 const { client } = require('../../bot');
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment, Message } = require('discord.js');
-const { formatOrdinal, getJoinPosition } = require('../../tools');
+const { formatOrdinal } = require('../../tools');
 const { get: getGuild } = require('../../models/guilds');
 
 // Manage Text
@@ -82,9 +82,7 @@ client.on('guildMemberAdd', async (member) => {
 		return channel.send(
 			`Welcome, ${member.displayName} to **${
 				guild.name
-			}**. You are the ${formatOrdinal(
-				getJoinPosition(member.id, guild) + 1,
-			)} member!`,
+			}**!`,
 		);
 	}
 });
