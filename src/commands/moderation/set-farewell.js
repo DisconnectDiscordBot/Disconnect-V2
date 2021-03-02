@@ -83,6 +83,27 @@ module.exports.run = async ({ message, args, guildData }) => {
 				);
 			}
 
+			// Check permissions
+			console.log(
+				channel.permissionsFor(message.guild.me).has('SEND_MESSAGES'),
+			);
+			if (
+				!channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
+			) {
+				return message.channel.send(
+					improperUsage(
+						'I am unable to send messages in that channel.',
+					),
+				);
+			}
+			if (!channel.permissionsFor(message.guild.me).has('ATTACH_FILES')) {
+				return message.channel.send(
+					improperUsage(
+						'I am unable to send images *(or files)* in that channel.',
+					),
+				);
+			}
+
 			guildData.farewellChannel = channel.id;
 			await guildData.save();
 			return message.channel.send(
