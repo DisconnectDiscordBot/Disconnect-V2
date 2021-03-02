@@ -43,7 +43,7 @@ setInterval(async () => {
 
 		// Send message
 		guildChannel.send(
-			`${client.emojis.cache.get('798300331569971207')} | **${
+			`${client.emojis.cache.get('816134772161773608')} | **${
 				latestVideo.author
 			}** has uploaded a new video!! Go check it out >> ${
 				latestVideo.link
