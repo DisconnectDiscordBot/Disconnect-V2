@@ -1,6 +1,13 @@
 const moment = require('moment');
 require('moment-duration-format');
 
+// Get Ordinal
+module.exports.formatOrdinal = (n) => {
+	const s = ['th', 'st', 'nd', 'rd'],
+		v = n % 100;
+	return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
+
 // Get Member
 module.exports.fetchMember = (message, find = '') => {
 	find = find.toLowerCase();

@@ -6,7 +6,7 @@ const { readdirSync, statSync } = require('fs');
 module.exports.fetchFiles = (path, pattern) => {
 	if (typeof path !== 'string' || typeof pattern !== 'string') {
 		console.log(
-			'Your path or pattern is an incorrect type. Please make sure you are sending a string.'
+			'Your path or pattern is an incorrect type. Please make sure you are sending a string.',
 		);
 		return null;
 	}
@@ -43,7 +43,7 @@ module.exports.fetchFiles = (path, pattern) => {
 		return files;
 	} catch (err) {
 		console.error(
-			`An error has occurred getting command files. Error: ${err}`
+			`An error has occurred getting command files. Error: ${err}`,
 		);
 		return null;
 	}
