@@ -2,4 +2,4 @@
 require('dotenv').config();
 
 // Start up the bot
-require('./src/bot.js')
+require('./src/bot.js');

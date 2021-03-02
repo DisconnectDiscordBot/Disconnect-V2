@@ -8,15 +8,16 @@ ideas-notes/
 .vscode
 *.ini
 *.example
+*.ico
 
 # Logs
 logs/
 *.logs
 
 # Enviornments 
-*.env
-*.env.test
-*.env.example
+.env
+.env.test
+.env.example
 
 # Reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

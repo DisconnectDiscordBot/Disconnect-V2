@@ -299,6 +299,30 @@
 			"aliases": "change-prefix",
 			"category": "mod"
 		},
+		"welcomer": {
+			"disc": "Change your guilds welcoming settings.",
+			"perms": "Manage Guild",
+			"usage": "welcomer < option >",
+			"example": "welcomer help",
+			"aliases": "set-welcomer",
+			"category": "mod"
+		},
+		"farewell": {
+			"disc": "Change your guilds farewell settings.",
+			"perms": "Manage Guild",
+			"usage": "farewell < option >",
+			"example": "farewell help",
+			"aliases": "set-farewell",
+			"category": "mod"
+		},
+		"youtube-notify": {
+			"disc": "Get notifications on YouTube uploads.",
+			"perms": "Manage Guild",
+			"usage": "youtube-notify < option >",
+			"example": "youtube-notify help",
+			"aliases": "yt-notify",
+			"category": "mod"
+		},
 
 		"----NSFW Category": null,
 		"porn": {
