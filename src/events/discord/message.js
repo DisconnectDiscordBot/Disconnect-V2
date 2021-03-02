@@ -50,7 +50,7 @@ client.on('message', async (message) => {
 	if (!content.startsWith(prefix) || !args[0]) return;
 
 	// Remove spaces
-	for (arg of args) {
+	for (const arg of args) {
 		if (arg === '') args.splice(args.indexOf(arg), 1);
 	}
 
@@ -104,6 +104,12 @@ client.on('message', async (message) => {
 			improperUsage('This command may only be used in nsfw channels.'),
 		);
 	}
+
+	// Check Developer Only
+	if (command.config.isDev && message.author.id !== settings.creatorID) {
+		return;
+	}
+
 	// Run Execute the command
 	command.run({ client, message, args, guildData, userData }).catch((err) => {
 		logger.client.error(

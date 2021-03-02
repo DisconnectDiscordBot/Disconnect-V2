@@ -36,7 +36,7 @@ module.exports.createSuccessEmbed = (body) => {
 	const e = new MessageEmbed()
 		.setColor(palette.success)
 		.setDescription(
-			`${client.emojis.cache.get('795353967852519434')} ${body}`,
+			`${client.emojis.cache.get('816080871110082560')} ${body}`,
 		);
 	return e;
 };
@@ -47,5 +47,19 @@ module.exports.missingPermissions = (type, perms) => {
 		.setColor(palette.error)
 		.setTitle(`${type} missing the following permissions`)
 		.setDescription(`• ${perms.join('\n• ')}`);
+	return e;
+};
+
+// Premium Only Commands
+module.exports.premiumOnly = (command, type) => {
+	const e = new MessageEmbed()
+		.setColor(palette.primary)
+		.setTitle(
+			type == 'limited'
+				? 'This Command Is Limited'
+				: 'This Command is Premium Only',
+		)
+		.setDescription(`hi`)
+		.setFooter("I'm sorry!!!");
 	return e;
 };

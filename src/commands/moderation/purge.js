@@ -34,9 +34,11 @@ module.exports.run = async ({ message, args }) => {
 	}
 
 	return message.channel.send(
-		createSuccessEmbed(
-			`Successfully deleted **${deleted.size}** messages!`,
-		),
+		!deleted || !deleted.size || deleted.size < 2
+			? improperUsage('It seems I have not deleted an messages')
+			: createSuccessEmbed(
+					`Successfully deleted **${deleted.size}** messages!`,
+			  ),
 	);
 };
 

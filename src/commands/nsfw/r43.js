@@ -8,6 +8,9 @@ async function getFromReddit() {
 		.get('https://www.reddit.com/r/rule34.json?sort=top&t=week')
 		.query({ limit: 800 });
 
+	if (!body.data || !body.data.children) return null;
+	if (!body.data.children.length) return null;
+
 	const post =
 		body.data.children[
 			Math.floor(Math.random() * body.data.children.length)
@@ -33,7 +36,9 @@ async function getFromR34(search) {
 
 	const { posts } = await parseStringAsync(text);
 
-	if (posts === '0') return null;
+	if (posts === '0' || !posts) return null;
+	if (posts.post.length === '0' || !posts.post.length || !posts.post)
+		return null;
 
 	const post = posts.post[Math.floor(Math.random() * posts.post.length)];
 
@@ -53,6 +58,14 @@ module.exports.run = async ({ message, args }) => {
 
 	if (result === null) {
 		const res = await getFromReddit();
+
+		if (!res || !res.data) {
+			return message.channel.send(
+				improperUsage(
+					'I was unable to find and images at the moment. Please try again later!',
+				),
+			);
+		}
 
 		const e = await createEmbed({
 			title: res.data.title,
