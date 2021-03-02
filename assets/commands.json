@@ -24,7 +24,15 @@
 			"role-info",
 			"user-info"
 		],
-		"mod": ["ban", "kick", "purge", "set-prefix"],
+		"mod": [
+			"ban",
+			"kick",
+			"purge",
+			"set-prefix",
+			"welcomer",
+			"youtube-notification",
+			"farewell"
+		],
 		"nsfw": ["porn", "hentai", "r34"],
 		"rp": [
 			"boop",
