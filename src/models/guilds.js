@@ -15,6 +15,12 @@ const guildSchema = new Schema({
 	tips: { type: Boolean, default: false },
 	premium: { type: Boolean, default: false },
 	prefix: { type: String, default: prefix },
+	welcomingEnabled: { type: Boolean, default: false },
+	welcomingChannel: { type: String, default: '' },
+	welcomingFormat: { type: String, default: 'text' },
+	farewellEnabled: { type: Boolean, default: false },
+	farewellChannel: { type: String, default: '' },
+	farewellFormat: { type: String, default: 'text' },
 });
 
 // Create model
@@ -22,18 +28,21 @@ module.exports.model = new model('guilds', guildSchema);
 
 // Get a guild
 module.exports.get = async (guild) => {
-	// Check if there is cached data
-	const cached = guildCaches.get(guild.id);
+	// Cache system is broke..
+	/*
+		// Check if there is cached data
+		const cached = guildCaches.get(guild.id);
 
-	// Update Guild Name
-	if (cached && cached.data.name !== guild.name) {
-		cached.data.name = guild.name;
-		await cached.data.save();
-	}
+		// Update Guild Name
+		if (cached && cached.data.name !== guild.name) {
+			cached.data.name = guild.name;
+			await cached.data.save();
+		}
 
-	// Return cached data if there is any
-	if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
-		return cached.data;
+		// Return cached data if there is any
+		if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
+			return cached.data;
+	*/
 
 	// Get the guild data
 	const guildData = await this.model
