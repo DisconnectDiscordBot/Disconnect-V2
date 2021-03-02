@@ -32,5 +32,17 @@
 			"Bot info links fixed"
 		],
 		"date": "February 5th, 2021"
+	},
+	"2.1.0": {
+		"title": "Notify Me",
+		"body": "Disconnect notifications from YouTube uploads! And a few other things...",
+		"changes": [
+			"YouTube Notifications are now a thing... There are a few more platforms in testing but are taking too long.",
+			"Welcoming and Farewell can now be done using Disconnect.",
+			"Disconnect will not try running commands before checking permissions to speak",
+			"Disconnect will also not bug out using certain commands like it has been doing",
+			"Cooldowns have been enabled for some commands. Please stop spamming the bot so much and this may go away!!!",
+			"and much more..."
+		]
 	}
 }
