@@ -18,6 +18,7 @@ const applyText = (canvas, text) => {
 };
 
 client.on('guildMemberAdd', async (member) => {
+	console.log(member);
 	if (!member) return;
 
 	const guild = member.guild;
