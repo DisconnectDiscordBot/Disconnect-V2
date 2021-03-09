@@ -46,7 +46,13 @@
 		]
 	},
 	"2.1.1": {
-		"title": "Notify Me - Commands List Update",
-		"changes": ["Forgot to update the command list."]
+		"title": "Notify Me - Patches",
+		"changes": [
+			"Forgot to update the command list.",
+			"Removed <> when bot joins a guild",
+			"Cleaned up new events",
+			"Fixed the broken emoji",
+			"Made sure bot can speak before running command"
+		]
 	}
 }
