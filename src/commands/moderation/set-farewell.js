@@ -84,9 +84,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Check permissions
-			console.log(
-				channel.permissionsFor(message.guild.me).has('SEND_MESSAGES'),
-			);
 			if (
 				!channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
 			) {
