@@ -18,8 +18,6 @@ client.on('ready', async () => {
 	const { fetchEvents } = require('./events');
 	await fetchEvents();
 
-	// Setup extra client values
-
 	// Tell us the bot has finished loading
 	log.client.info(`${client.user.username} is online and ready.`);
 });

@@ -8,8 +8,9 @@ module.exports.fetchEvents = () => {
 	const eventFiles = fetchFiles('./src/events/', '.js');
 
 	// Check if there are files
-	if (eventFiles.length <= 0)
+	if (eventFiles.length <= 0) {
 		return log.system.warn('There are no events to load! continuing. . .');
+	}
 
 	// Require all files
 	for (const event of eventFiles) require(event);
@@ -18,6 +19,6 @@ module.exports.fetchEvents = () => {
 	return log.system.info(
 		`${eventFiles.length} event${
 			eventFiles.length > 1 ? 's' : ''
-		} have been loaded. . .`
+		} have been loaded. . .`,
 	);
 };
