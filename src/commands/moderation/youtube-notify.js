@@ -1,14 +1,14 @@
-const agent = require('superagent');
-const log = require('../../utils/logger');
 const {
 	improperUsage,
 	createSuccessEmbed,
 	premiumOnly,
 } = require('../../utils/embed');
+const agent = require('superagent');
 const {
 	checkChannels,
 	model: createNotif,
 } = require('../../models/notifications');
+const log = require('../../utils/logger');
 const { MessageEmbed } = require('discord.js');
 const config = require('../../../assets/config.json');
 
@@ -47,7 +47,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 
 	const e = new MessageEmbed()
 		.setTitle('YouTube Notifications')
-		.setColor(`FF0000`)
+		.setColor('FF0000')
 		.setThumbnail('https://i.imgur.com/F1ikCwh.png');
 
 	switch (args[0] ? args[0].toLowerCase() : null) {
@@ -156,7 +156,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 					`I have subscribed to **${channelInfo.channelTitle}**. I will now upload all uploads by them here!`,
 				),
 			);
-			break;
 
 		case 'remove':
 			if (!args[1]) {
@@ -188,8 +187,9 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			for (const creator of rawChannels) {
-				if (creator._doc.uuid == removeChannelId)
+				if (creator._doc.uuid == removeChannelId) {
 					await creator.remove();
+				}
 			}
 
 			return message.channel.send(
@@ -197,7 +197,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 					`I will no longer notify about uploads from **${removeChannelInfo.channelTitle}**`,
 				),
 			);
-			break;
 
 		default:
 		case 'help':
@@ -206,7 +205,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 			);
 
 			return message.channel.send(e);
-			break;
 	}
 };
 

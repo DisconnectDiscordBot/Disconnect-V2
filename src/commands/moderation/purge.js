@@ -18,13 +18,15 @@ module.exports.run = async ({ message, args }) => {
 	try {
 		deleted = await message.channel.bulkDelete(messages);
 	} catch (err) {
-		if (err.toString().includes('14 days old'))
+		if (err.toString().includes('14 days old')) {
 			return message.channel.send(
 				improperUsage(
 					'I am unable to delete messages over 14 days old! Sorry for the inconvenience.',
 				),
 			);
-		else logger.client.error(err);
+		} else {
+			logger.client.error(err);
+		}
 	}
 
 	if (deleted < 2) {

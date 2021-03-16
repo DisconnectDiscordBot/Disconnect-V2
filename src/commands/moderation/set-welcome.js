@@ -1,8 +1,4 @@
-const {
-	improperUsage,
-	createSuccessEmbed,
-	premiumOnly,
-} = require('../../utils/embed');
+const { improperUsage, createSuccessEmbed } = require('../../utils/embed');
 const { MessageEmbed } = require('discord.js');
 const palette = require('../../../assets/colors.json');
 const config = require('../../../assets/config.json');
