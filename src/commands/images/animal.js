@@ -5,9 +5,9 @@ const { sendSomeRandomAnimalAPI } = require('../../utils/helper');
 module.exports.run = async ({ message }) => {
 	const animal = animals[Math.floor(Math.random() * animals.length)];
 	const query =
-		animal == 'bird'
+		animal === 'bird'
 			? 'birb'
-			: animal == 'panda'
+			: animal === 'panda'
 			? pandas[Math.floor(Math.random() * pandas.length)]
 			: animal;
 	return await sendSomeRandomAnimalAPI(message, animal, query);

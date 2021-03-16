@@ -8,7 +8,7 @@ const userSchema = new Schema({
 	name: String,
 	created: Date,
 	premium: { type: Boolean, default: false },
-	premium_credits: { type: Number, default: 0 },
+	premiumCredits: { type: Number, default: 0 },
 	guilds: { type: Array, default: [] },
 });
 

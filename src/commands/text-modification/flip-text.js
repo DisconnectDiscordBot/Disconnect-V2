@@ -1,4 +1,4 @@
-const { flip_text: flipText } = require('../../utils/translate');
+const { flipText } = require('../../utils/translate');
 const { createEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {

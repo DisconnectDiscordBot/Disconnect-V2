@@ -6,7 +6,7 @@ const {
 const agent = require('superagent');
 const {
 	checkChannels,
-	model: createNotif,
+	model: CreateNotif,
 } = require('../../models/notifications');
 const log = require('../../utils/logger');
 const { MessageEmbed } = require('discord.js');
@@ -134,7 +134,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Add the channel to the database
-			const newNotif = new createNotif({
+			const newNotif = new CreateNotif({
 				uuid: channelId,
 				guildID: message.guild.id,
 				created: Date.now(),
@@ -189,7 +189,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			for (const creator of rawChannels) {
-				if (creator._doc.uuid == removeChannelId) {
+				if (creator._doc.uuid === removeChannelId) {
 					await creator.remove();
 				}
 			}

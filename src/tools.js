@@ -10,7 +10,7 @@ module.exports.formatOrdinal = (i) => {
 		return `${i}st`;
 	} else if (n === 2 && x !== 12) {
 		return `${i}nd`;
-	} else if (n == 3 && x !== 13) {
+	} else if (n === 3 && x !== 13) {
 		return `${i}rd`;
 	} else {
 		return `${i}th`;

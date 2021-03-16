@@ -69,7 +69,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 						.replace(/#/g, ''),
 				) ||
 				message.guild.channels.cache.find(
-					(c) => c.name == args.slice(1).join(' '),
+					(c) => c.name === args.slice(1).join(' '),
 				);
 			if (!channel) {
 				return message.channel.send(

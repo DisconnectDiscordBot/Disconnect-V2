@@ -32,7 +32,7 @@ module.exports.run = async ({ message, args }) => {
 				.replace('.webp', '.png') + '?size=2048',
 		)
 		.setColor(
-			member.displayHexColor == '#000000'
+			member.displayHexColor === '#000000'
 				? secondary
 				: member.displayHexColor,
 		)

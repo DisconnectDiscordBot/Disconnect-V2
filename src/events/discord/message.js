@@ -6,11 +6,8 @@ const settings = require('../../../assets/config.json');
 
 // On Message
 client.on('message', async (message) => {
-	// Deconstruct message
-	const { author, content, channel, guild } = message;
-
 	// Pre Command Checks
-	if (author.bot || channel.type == 'dm') {
+	if (message.author.bot || message.channel.type === 'dm') {
 		return;
 	}
 
@@ -21,26 +18,26 @@ client.on('message', async (message) => {
 
 	// Get guild data
 	const { get: getGuild } = require('../../models/guilds');
-	const guildData = await getGuild(guild);
+	const guildData = await getGuild(message.guild);
 
 	// Get User Data
 	const { get: getUser } = require('../../models/users');
-	const userData = await getUser(author);
+	const userData = await getUser(message.author);
 
 	// Define information
 	const mention = `<@!${client.user.id}>`;
 	const prefix = guildData.prefix ? guildData.prefix : settings.prefix;
-	const args = content.slice(prefix.length).trim().split(' ');
+	const args = message.content.slice(prefix.length).trim().split(' ');
 
 	// If it starts with a ping
-	if (content.startsWith(mention)) {
+	if (message.content.startsWith(mention)) {
 		return message.channel.send(
 			`Hello, I am **${client.user.username}**! Please use \`${prefix}help\` for help!`,
 		);
 	}
 
 	// If it doesn't start with prefix return;
-	if (!content.startsWith(prefix) || !args[0]) {
+	if (!message.content.startsWith(prefix) || !args[0]) {
 		return;
 	}
 
@@ -108,7 +105,7 @@ client.on('message', async (message) => {
 		}
 	}
 	// Check NSFW
-	if (command.config.isNSFW && channel.nsfw === false) {
+	if (command.config.isNSFW && message.channel.nsfw === false) {
 		return message.channel.send(
 			improperUsage('This command may only be used in nsfw channels.'),
 		);

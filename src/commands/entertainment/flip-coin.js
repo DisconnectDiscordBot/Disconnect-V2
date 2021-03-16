@@ -9,9 +9,9 @@ module.exports.run = async ({ message }) => {
 					'https://images-ext-2.discordapp.net/external/-Uso5WRQ9U7AAfaQWXNdBTdz_5mwF9_Pdjt8tBFYTsc/https/cdn.discordapp.com/emojis/793177890861613146.png',
 			},
 			body: `The coin has landed on... **${
-				Math.floor(Math.random() * 100) == 76
+				Math.floor(Math.random() * 100) === 76
 					? "ON IT'S SIDE?!?"
-					: Math.floor(Math.random() * 2) == 1
+					: Math.floor(Math.random() * 2) === 1
 					? 'HEADS'
 					: 'TAILS'
 			}**!`,

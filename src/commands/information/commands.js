@@ -18,7 +18,7 @@ module.exports.run = async ({ client, message }) => {
 
 	// Set up categories
 	for (const category of Object.keys(commands)) {
-		if (category === 'nsfw' && message.channel.nsfw == false) {
+		if (category === 'nsfw' && message.channel.nsfw === false) {
 			continue;
 		}
 		const commandsFound = commands[category];
