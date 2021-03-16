@@ -2,20 +2,26 @@ const moment = require('moment');
 require('moment-duration-format');
 
 // Get Ordinal
-module.exports.formatOrdinal = (n) => {
-	const s = ['th', 'st', 'nd', 'rd'],
-		v = n % 100;
-	return n + (s[(v - 20) % 10] || s[v] || s[0]);
+module.exports.formatOrdinal = (i) => {
+	const n  = i % 10;
+	const x = i % 100;
+	
+	if (n === 1 && x !== 11) {
+		return `${i}st`;	
+	} else if (n === 2 && x!== 12) {
+		return `${i}nd`;	
+	} else if ( n == 3 && x !== 13) {
+		return `${i}rd`;	
+	} else {
+		return `${i}th`;
+	}
 };
 
 // Get Member
 module.exports.fetchMember = (message, find = '') => {
 	find = find.toLowerCase();
 
-	let result = message.guild.members.cache.get(find);
-
-	if (!result && message.mentions.members)
-		result = message.mentions.members.first();
+	let result = message.guild.members.cache.get(find) || message.mentions.members.first();
 
 	if (!result && find) {
 		result = message.guild.members.cache.find((user) => {
@@ -26,7 +32,9 @@ module.exports.fetchMember = (message, find = '') => {
 		});
 	}
 
-	if (!result) return null;
+	if (!result) {
+		return null;
+	}
 	return result;
 };
 
