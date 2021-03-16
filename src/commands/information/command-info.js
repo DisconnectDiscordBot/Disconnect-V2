@@ -42,12 +42,22 @@ module.exports.run = async ({ client, message, guildData: guild, args }) => {
 		.setTitle(`${translate[info.category]} -> ${command.config.name}`)
 		.setColor(primary);
 
-	if (info.disc) e.setDescription(info.disc);
-	if (info.aliases) e.addField('Aliases', info.aliases, true);
-	if (info.usage) e.addField('Usage', info.usage, true);
-	if (info.example) e.addField('Example', info.example, true);
-	if (info.perms) e.addField('Required Permissions', info.perms, true);
-
+	if (info.disc) {
+		e.setDescription(info.disc);
+	}
+	if (info.aliases) {
+		e.addField('Aliases', info.aliases, true);
+	}
+	if (info.usage) {
+		e.addField('Usage', info.usage, true);
+	}
+	if (info.example) {
+		e.addField('Example', info.example, true);
+	}
+	if (info.perms) {
+		e.addField('Required Permissions', info.perms, true);
+	}
+	
 	return message.channel.send(e);
 };
 
