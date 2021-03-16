@@ -3,19 +3,18 @@ const { resolve } = require('path');
 const { readdirSync, statSync } = require('fs');
 
 // Get all files in a folder
-module.exports.fetchFiles = (path, pattern) => {
-	if (typeof path !== 'string' || typeof pattern !== 'string') {
+module.exports.fetchFiles = (dir, ptn) => {
+	if (typeof dir !== 'string' || typeof ptn !== 'string') {
 		throw new Error(
 			'Your path or pattern is an incorrect type. Please make sure you are sending a string.',
 		);
-		return null;
 	}
 
 	// File only function
 	function getFiles(path, pattern) {
 		// Variables
 		let results = [];
-		let res = readdirSync(path);
+		const res = readdirSync(path);
 
 		// Check each file
 		for (const item of res) {
@@ -39,12 +38,11 @@ module.exports.fetchFiles = (path, pattern) => {
 
 	// Get giles and return
 	try {
-		const files = getFiles(path, pattern);
+		const files = getFiles(dir, ptn);
 		return files;
 	} catch (err) {
 		throw new Error(
 			`An error has occurred getting command files. Error: ${err}`,
 		);
-		return null;
 	}
 };

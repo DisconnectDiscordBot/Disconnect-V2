@@ -16,12 +16,16 @@ module.exports.createEmbed = ({ author, title, body, image, footer }) => {
 	const e = new MessageEmbed().setColor(palette.secondary);
 
 	if (author) {
-		if (author.username)
+		if (author.username) {
 			e.setAuthor(
 				author.username,
-				author.avatarURL ? author.avatarURL : avatar.displayAvatarURL(),
+				author.avatarURL
+					? author.avatarURL
+					: author.avatar.displayAvatarURL(),
 			);
-		else e.setAuthor(author);
+		} else {
+			e.setAuthor(author);
+		}
 	}
 	if (title) e.setTitle(title);
 	if (body) e.setDescription(body);
@@ -55,11 +59,13 @@ module.exports.premiumOnly = (command, type) => {
 	const e = new MessageEmbed()
 		.setColor(palette.primary)
 		.setTitle(
-			type == 'limited'
-				? 'This Command Is Limited'
-				: 'This Command is Premium Only',
+			type == 'limited' ? 'Limited Command' : 'Premium Command Only',
 		)
-		.setDescription(`hi`)
-		.setFooter("I'm sorry!!!");
+		.setDescription(
+			`Hello, the \`${command}\` command is a ${
+				type === 'limited' ? 'limited' : 'premium'
+			} command. This is usually done to give you a taste of the command is limited, like a free trial. As this free to use, all fee's and expenses are from the developers pocket. The commands restricted usually relate to expenses and we ask if you could help support Disconnect over on our [patreon here](https://disconnectbot.com/premium). These donations mean a lot and go straight back into the development and continuation of Disconnect. \n\nAlready a premium Disconnect user? Head over to our support server [here](https://disconnectbot.com/support) to get your perks. *(Automation of this process is in development, but currently not out.)*`,
+		)
+		.setFooter('I am sorry');
 	return e;
 };
