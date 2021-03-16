@@ -1,17 +1,8 @@
-const agent = require('superagent');
-const { createEmbed } = require('../../utils/embed');
+const { sendNekosAPI } = require('../../utils/helper');
 const type = ['boobs', 'ass', 'pussy', 'gonewild'];
 
 module.exports.run = async ({ message, guildData, userData }) => {
-	const imageResult = await agent
-		.get('https://nekobot.xyz/api/image')
-		.query({ type: type[Math.floor(Math.random() * type.length)] });
-
-	message.channel.send(
-		createEmbed({
-			image: imageResult.body.message,
-		}),
-	);
+	await sendNekosAPI(message, type[Math.floor(Math.random() * type.length)]);
 
 	if (guildData.tips && !guildData.premium && !userData.premium) {
 		Math.floor(Math.random() * 25) == 9

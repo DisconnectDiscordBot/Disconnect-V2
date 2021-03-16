@@ -8,13 +8,13 @@ async function getFromReddit() {
 		.get('https://www.reddit.com/r/rule34.json?sort=top&t=week')
 		.query({ limit: 800 });
 
-	if (!res.body.data || !body.data.children) {
+	if (!res.body.data || !res.body.data.children) {
 		return null;
 	}
 	if (!res.body.data.children.length) {
 		return null;
 	}
-	
+
 	const post =
 		res.body.data.children[
 			Math.floor(Math.random() * res.body.data.children.length)
@@ -43,7 +43,13 @@ async function getFromR34(search) {
 	const results = await parseStringAsync(res.text);
 	const posts = results.posts;
 
-	if (posts === '0' || !posts || posts.post.length === '0' || !posts.post.length || !posts.post) {
+	if (
+		posts === '0' ||
+		!posts ||
+		posts.post.length === '0' ||
+		!posts.post.length ||
+		!posts.post
+	) {
 		return null;
 	}
 
