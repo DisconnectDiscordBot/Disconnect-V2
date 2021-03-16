@@ -59,7 +59,7 @@ module.exports.premiumOnly = (command, type) => {
 	const e = new MessageEmbed()
 		.setColor(palette.primary)
 		.setTitle(
-			type == 'limited' ? 'Limited Command' : 'Premium Command Only',
+			type === 'limited' ? 'Limited Command' : 'Premium Command Only',
 		)
 		.setDescription(
 			`Hello, the \`${command}\` command is a ${

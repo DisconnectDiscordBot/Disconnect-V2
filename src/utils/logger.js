@@ -6,11 +6,11 @@ const { client: bot } = require('../bot');
 const chalk = require('chalk');
 
 // Formats
-const logFormat = printf(({ timestamp: time, message, label: text }) => {
+const logFormat = printf(({ level, timestamp: time, message, label: text }) => {
 	if (!message || !message.length) {
 		return '';
 	}
-	return `${time} [${label}] ${text} ${message}`;
+	return `${time} [${level}] ${text} ${message}`;
 });
 
 const consoleFormat = printf(

@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const { primary } = require('../../../assets/colors.json');
 const { website } = require('../../../assets/config.json');
 
-module.exports.run = async ({ message, client }) => {
+module.exports.run = async ({ message }) => {
 	const e = new MessageEmbed()
 		.setTitle('Disconnect Invites')
 		.setColor(primary)
