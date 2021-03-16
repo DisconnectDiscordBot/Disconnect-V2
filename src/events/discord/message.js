@@ -25,9 +25,6 @@ client.on('message', async (message) => {
 	const { get: getUser } = require('../../models/users');
 	const userData = await getUser(author);
 
-	// XP System
-	// Economy System
-
 	// Define information
 	const mention = `<@!${client.user.id}>`;
 	const prefix = guildData.prefix ? guildData.prefix : settings.prefix;
@@ -54,7 +51,6 @@ client.on('message', async (message) => {
 	if (!command) return;
 
 	// Check permissions
-	const member = message.member;
 	const clientMember = message.guild.members.cache.get(client.user.id);
 
 	// Make sure the bot can send embeds
@@ -63,7 +59,7 @@ client.on('message', async (message) => {
 			'Many of my responses require permission to embed links. Please give me permission to do this if you would like me to run this command.',
 		);
 	}
-	
+
 	// Make sure bot is able to respond
 	if (
 		!clientMember.hasPermission('SEND_MESSAGES') ||
@@ -77,8 +73,11 @@ client.on('message', async (message) => {
 		const missing = [];
 
 		for (const permission of command.config.permissions) {
-			if (!message.channel.permissionsFor(message.author).has(permission))
+			if (
+				!message.channel.permissionsFor(message.author).has(permission)
+			) {
 				missing.push(permission);
+			}
 		}
 
 		if (missing.length > 0) {
@@ -91,8 +90,9 @@ client.on('message', async (message) => {
 		const missing = [];
 
 		for (const permission of command.config.clientPerms) {
-			if (!message.channel.permissionsFor(client.user).has(permission))
+			if (!message.channel.permissionsFor(client.user).has(permission)) {
 				missing.push(permission);
+			}
 		}
 
 		if (missing.length > 0) {

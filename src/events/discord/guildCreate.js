@@ -14,8 +14,9 @@ client.on('guildCreate', async (guild) => {
 	const channel = client.guilds.cache
 		.get('713612836961648680')
 		.channels.cache.get('733501515112906885');
-	if (channel)
+	if (channel) {
 		await channel.send(
 			`__**I have joined a new guild!**__ 🎉🎉 \n**Name**: ${guild.name} \n**ID**: \`${guild.id}\` \n**Member Count**: ${guild.memberCount}`,
 		);
+	}
 });

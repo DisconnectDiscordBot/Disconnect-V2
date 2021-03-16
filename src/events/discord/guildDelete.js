@@ -14,8 +14,9 @@ client.on('guildDelete', async (guild) => {
 	const channel = client.guilds.cache
 		.get('713612836961648680')
 		.channels.cache.get('733501515112906885');
-	if (channel)
+	if (channel) {
 		await channel.send(
 			`__I have left a guild!__ 😢😢 *Information below*: \n**Guild Name**: ${guild.name} \n**Guild ID**: ${guild.id} \n**Guild Member Count**: ${guild.memberCount}`,
 		);
+	}
 });
