@@ -12,7 +12,9 @@ const options = {
 };
 
 // Check link and options
-if (!link || !options) return null;
+if (!link || !options) {
+	return null;
+}
 
 // Connect
 connect(link, options).catch((err) => log.database.error(err));

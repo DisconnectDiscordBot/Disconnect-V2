@@ -18,7 +18,9 @@ module.exports.run = async ({ client, message }) => {
 
 	// Set up categories
 	for (const category of Object.keys(commands)) {
-		if (category === 'nsfw' && message.channel.nsfw == false) continue;
+		if (category === 'nsfw' && message.channel.nsfw == false) {
+			continue;
+		}
 		const commandsFound = commands[category];
 		e.addField(
 			translate[category],

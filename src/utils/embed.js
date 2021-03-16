@@ -27,10 +27,19 @@ module.exports.createEmbed = ({ author, title, body, image, footer }) => {
 			e.setAuthor(author);
 		}
 	}
-	if (title) e.setTitle(title);
-	if (body) e.setDescription(body);
-	if (image) e.setImage(image);
-	if (footer) e.setFooter(footer);
+
+	if (title) {
+		e.setTitle(title);
+	}
+	if (body) {
+		e.setDescription(body);
+	}
+	if (image) {
+		e.setImage(image);
+	}
+	if (footer) {
+		e.setFooter(footer);
+	}
 
 	return e;
 };

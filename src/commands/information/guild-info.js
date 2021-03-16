@@ -48,7 +48,9 @@ module.exports.run = async ({ client, message }) => {
 		)
 		.setFooter(message.guild.id);
 
-	if (message.guild.banner) e.setImage(`${message.guild.bannerURL()}`);
+	if (message.guild.banner) {
+		e.setImage(`${message.guild.bannerURL()}`);
+	}
 	return message.channel.send(e);
 };
 

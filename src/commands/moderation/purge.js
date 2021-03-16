@@ -2,7 +2,7 @@ const logger = require('../../utils/logger');
 const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {
-	const limit = parseInt(args[0]);
+	const limit = parseInt(args[0], 10);
 	if (!limit || isNaN(limit) || limit > 100 || limit < 2) {
 		return message.channel.send(
 			improperUsage(

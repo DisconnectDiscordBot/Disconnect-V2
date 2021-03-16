@@ -5,7 +5,9 @@ const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {
 	let member;
-	if (args[0]) member = fetchMember(message, args[0]);
+	if (args[0]) {
+		member = fetchMember(message, args[0]);
+	}
 	if (!member || typeof member !== 'object') {
 		return message.channel.send(
 			improperUsage(

@@ -13,7 +13,9 @@ module.exports.fetchEvents = () => {
 	}
 
 	// Require all files
-	for (const event of eventFiles) require(event);
+	for (const event of eventFiles) {
+		require(event);
+	}
 
 	// Log the events
 	return log.system.info(

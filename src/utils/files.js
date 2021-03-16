@@ -28,7 +28,9 @@ module.exports.fetchFiles = (dir, ptn) => {
 
 			// Make sure file is a usable file
 			if (prop.isFile() && itm.endsWith(pattern)) {
-				if (!itm.includes('template')) results.push(itm);
+				if (!itm.includes('template')) {
+					results.push(itm);
+				}
 			}
 		}
 

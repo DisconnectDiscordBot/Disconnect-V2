@@ -10,7 +10,9 @@ client.on('message', async (message) => {
 	const { author, content, channel, guild } = message;
 
 	// Pre Command Checks
-	if (author.bot || channel.type == 'dm') return;
+	if (author.bot || channel.type == 'dm') {
+		return;
+	}
 
 	// Pre command permission checks
 	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
@@ -38,17 +40,23 @@ client.on('message', async (message) => {
 	}
 
 	// If it doesn't start with prefix return;
-	if (!content.startsWith(prefix) || !args[0]) return;
+	if (!content.startsWith(prefix) || !args[0]) {
+		return;
+	}
 
 	// Remove spaces
 	for (const arg of args) {
-		if (arg === '') args.splice(args.indexOf(arg), 1);
+		if (arg === '') {
+			args.splice(args.indexOf(arg), 1);
+		}
 	}
 
 	// Get the command
 	const cmd = args.shift().toLowerCase();
 	const command = client.commands.get(cmd) || client.aliases.get(cmd);
-	if (!command) return;
+	if (!command) {
+		return;
+	}
 
 	// Check permissions
 	const clientMember = message.guild.members.cache.get(client.user.id);

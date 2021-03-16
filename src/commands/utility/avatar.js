@@ -5,8 +5,12 @@ const { secondary } = require('../../../assets/colors.json');
 module.exports.run = async ({ message, args }) => {
 	// Get user
 	let member;
-	if (args[0]) member = fetchMember(message, args.join(' '));
-	if (!member || typeof member !== 'object') member = message.member;
+	if (args[0]) {
+		member = fetchMember(message, args.join(' '));
+	}
+	if (!member || typeof member !== 'object') {
+		member = message.member;
+	}
 
 	// Display Avatar
 	const e = new MessageEmbed()

@@ -14,7 +14,9 @@ module.exports.fetchCommands = async (client) => {
 	const commandFiles = await fetchFiles('./src/commands', '.js');
 
 	// Check the command files
-	if (commandFiles == null) return;
+	if (commandFiles == null) {
+		return;
+	}
 	if (commandFiles.length <= 0) {
 		return log.system.warn(
 			'There are no commands to load! continuing. . .',
@@ -27,13 +29,17 @@ module.exports.fetchCommands = async (client) => {
 		const file = require(path);
 
 		// Check the command
-		if (!file || !file.config || !file.run) continue;
+		if (!file || !file.config || !file.run) {
+			continue;
+		}
 
 		// Destructuring the config
 		const { name, aliases, category } = file.config;
 
 		// Check the config
-		if (!name) continue;
+		if (!name) {
+			continue;
+		}
 
 		// Set commands
 		client.commands.set(name, file);

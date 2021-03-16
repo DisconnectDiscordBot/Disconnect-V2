@@ -5,15 +5,22 @@ const { fetchMember, formatDate, getTimeSince } = require('../../tools');
 module.exports.run = async ({ message, args }) => {
 	// Get user
 	let member;
-	if (args[0]) member = fetchMember(message, args.join(' '));
-	if (!member || typeof member !== 'object') member = message.member;
+	if (args[0]) {
+		member = fetchMember(message, args.join(' '));
+	}
+	if (!member || typeof member !== 'object') {
+		member = message.member;
+	}
 
 	const roles = [];
 	let i = 0;
 
 	for (const role of member.roles.cache) {
-		if (roles.length < 10) roles.push(role[1]);
-		else i++;
+		if (roles.length < 10) {
+			roles.push(role[1]);
+		} else {
+			i++;
+		}
 	}
 
 	// Display Avatar
