@@ -1,4 +1,4 @@
-const { MessageEmbed, Message } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { secondary } = require('../../../assets/colors.json');
 const { getTimeSince, formatDate } = require('../../tools');
 const { regions } = require('../../../assets/translation.json');

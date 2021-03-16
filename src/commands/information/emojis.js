@@ -2,13 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const { secondary } = require('../../../assets/colors.json');
 const { formatDate, getTimeSince } = require('../../tools');
 
-function checkDays(date) {
-	let now = new Date();
-	let diff = now.getTime() - date.getTime();
-	let days = Math.floor(diff / 86400000);
-	return days + (days == 1 ? ' day' : ' days') + ' ago';
-}
-
 const filterNum = (str) => {
 	const numericalChar = new Set([
 		'0',
@@ -30,7 +23,7 @@ const filterNum = (str) => {
 };
 
 const chunks = function (array, size) {
-	let results = [];
+	const results = [];
 	while (array.length) {
 		results.push(array.splice(0, size));
 	}
@@ -38,11 +31,11 @@ const chunks = function (array, size) {
 };
 
 module.exports.run = async ({ message, args }) => {
-	let option = args.shift();
+	const option = args.shift();
 
 	if (option) {
 		if (!isNaN(filterNum(option))) {
-			let emoji = message.guild.emojis.cache.get(filterNum(option));
+			const emoji = message.guild.emojis.cache.get(filterNum(option));
 
 			if (emoji) {
 				const e = new MessageEmbed()
@@ -59,7 +52,7 @@ module.exports.run = async ({ message, args }) => {
 
 				return message.channel.send(e);
 			} else {
-				let emojiList = [];
+				const emojiList = [];
 
 				message.guild.emojis.cache.forEach((e, x) => {
 					emojiList.push(`${e} | \`${x}\` | ${e.name}`);
@@ -75,21 +68,21 @@ module.exports.run = async ({ message, args }) => {
 				}
 
 				if (emojiList.length >= 26) {
-					let arrLength = emojiList.length;
-
-					let chunk = chunks(emojiList, 25);
-
-					let pages = chunk.length;
+					const arrLength = emojiList.length;
+					const chunk = chunks(emojiList, 25);
+					const pages = chunk.length;
 					let i = 1;
 
 					chunk.forEach((ch) => {
 						const e = new MessageEmbed();
-						if (i === 1)
+						if (i === 1) {
 							e.setDescription(
 								'Splitting all emojis into groups of 25 to not exceed 2000 characters.\n' +
 									ch.join('\n'),
-							).setAuthor(`Guild Emoji list`);
-						else e.setDescription(ch.join('\n'));
+							).setAuthor('Guild Emoji list');
+						} else {
+							e.setDescription(ch.join('\n'));
+						}
 						e.setFooter(
 							`${arrLength} emojis found • Page ${i}/${pages}`,
 						).setColor(secondary);
@@ -108,7 +101,7 @@ module.exports.run = async ({ message, args }) => {
 			}
 		}
 	} else {
-		let emojiList = [];
+		const emojiList = [];
 
 		message.guild.emojis.cache.forEach((e, x) => {
 			emojiList.push(`${e} | \`${x}\` | ${e.name}`);
@@ -124,21 +117,21 @@ module.exports.run = async ({ message, args }) => {
 		}
 
 		if (emojiList.length >= 26) {
-			let arrLength = emojiList.length;
-
-			let chunk = chunks(emojiList, 25);
-
-			let pages = chunk.length;
+			const arrLength = emojiList.length;
+			const chunk = chunks(emojiList, 25);
+			const pages = chunk.length;
 			let i = 1;
 
 			chunk.forEach((ch) => {
 				const e = new MessageEmbed();
-				if (i === 1)
+				if (i === 1) {
 					e.setDescription(
 						'Splitting all emojis into groups of 25 to not exceed 2000 characters.\n' +
 							ch.join('\n'),
-					).setAuthor(`Guild Emoji list`);
-				else e.setDescription(ch.join('\n'));
+					).setAuthor('Guild Emoji list');
+				} else {
+					e.setDescription(ch.join('\n'));
+				}
 				e.setFooter(
 					`${arrLength} emojis found • Page ${i}/${pages}`,
 				).setColor(secondary);

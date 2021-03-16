@@ -1,11 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 const { improperUsage } = require('../../utils/embed');
 const { primary } = require('../../../assets/colors.json');
-const { website } = require('../../../assets/config.json');
 const { commandInfo } = require('../../../assets/commands.json');
 const { categories: translate } = require('../../../assets/translation.json');
 
-module.exports.run = async ({ client, message, guildData: guild, args }) => {
+module.exports.run = async ({ client, message, args }) => {
 	// Get Command
 	if (!args[0]) {
 		return message.channel.send(
@@ -57,7 +56,7 @@ module.exports.run = async ({ client, message, guildData: guild, args }) => {
 	if (info.perms) {
 		e.addField('Required Permissions', info.perms, true);
 	}
-	
+
 	return message.channel.send(e);
 };
 

@@ -6,7 +6,7 @@ const changelog = require('../../../assets/changelog.json');
 const { commands } = require('../../../assets/commands.json');
 const { categories: translate } = require('../../../assets/translation.json');
 
-module.exports.run = async ({ client, message, guildData: guild }) => {
+module.exports.run = async ({ client, message }) => {
 	// Send message
 	const e = new MessageEmbed()
 		.setTitle('Disconnect Command List')
