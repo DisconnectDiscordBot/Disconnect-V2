@@ -1,6 +1,6 @@
 const { createEmbed } = require('../../utils/embed');
 
-module.exports.run = async ({ message, args }) => {
+module.exports.run = async ({ message }) => {
 	const dice_one = Math.ceil(Math.random() * 6);
 	const dice_two = Math.ceil(Math.random() * 6);
 

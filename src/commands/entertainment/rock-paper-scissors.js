@@ -46,7 +46,7 @@ module.exports.run = async ({ client, message, args }) => {
 			time: 60000,
 		});
 
-		collector.on('collect', async (reaction, user) => {
+		collector.on('collect', async (reaction) => {
 			await msg.reactions.removeAll();
 			e.setDescription(
 				`I pick ${rpsChoice}! You picked: ${reaction.emoji}`,
@@ -54,7 +54,7 @@ module.exports.run = async ({ client, message, args }) => {
 			return msg.edit(e);
 		});
 
-		collector.on('end', () => {});
+		collector.on('end');
 	}
 
 	if (choice) {

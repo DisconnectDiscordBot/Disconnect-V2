@@ -34,9 +34,11 @@ async function getFromReddit() {
 			!post.data.url.endsWith('.jpg') &&
 			!post.data.url.endsWith('.jpeg')) ||
 		post.is_video
-	)
+	) {
 		return await getFromReddit();
-	else return post;
+	} else {
+		return post;
+	}
 }
 
 module.exports.run = async ({ message }) => {

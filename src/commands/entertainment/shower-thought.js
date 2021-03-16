@@ -2,13 +2,13 @@ const agent = require('superagent');
 const { createEmbed } = require('../../utils/embed');
 
 module.exports.run = async ({ message }) => {
-	const results = ({ body } = await agent
+	const res = await agent
 		.get('https://www.reddit.com/r/Showerthoughts.json')
-		.query({ limit: 1000 }));
+		.query({ limit: 1000 });
 
 	const approvedResults = message.channel.nsfw
-		? body.data.children
-		: body.data.children.filter((post) => !post.data.over_18);
+		? res.body.data.children
+		: res.body.data.children.filter((post) => !post.data.over_18);
 
 	const thought =
 		approvedResults.length > 0

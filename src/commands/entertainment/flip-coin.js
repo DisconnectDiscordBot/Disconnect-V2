@@ -1,6 +1,6 @@
 const { createEmbed } = require('../../utils/embed');
 
-module.exports.run = async ({ message, args }) => {
+module.exports.run = async ({ message }) => {
 	return message.channel.send(
 		createEmbed({
 			author: {
