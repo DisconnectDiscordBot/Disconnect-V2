@@ -106,7 +106,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 				message,
 				args.slice(1).join(' '),
 			);
-			if (channel == null) return;
+			if (channel === null) return;
 
 			// Channel information
 			const channelInfo = channel.body.items[0].snippet;
