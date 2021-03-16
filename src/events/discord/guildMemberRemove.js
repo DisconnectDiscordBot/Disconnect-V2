@@ -1,7 +1,6 @@
 const { client } = require('../../bot');
 const { createCanvas, loadImage } = require('canvas');
-const { MessageAttachment, Message } = require('discord.js');
-const { formatOrdinal, getJoinPosition } = require('../../tools');
+const { MessageAttachment } = require('discord.js');
 const { get: getGuild } = require('../../models/guilds');
 
 // Manage Text
@@ -18,17 +17,27 @@ const applyText = (canvas, text) => {
 };
 
 client.on('guildMemberRemove', async (member) => {
-	if (!member) return;
+	if (!member) {
+		return;
+	}
 
 	const guild = member.guild;
 	const guildData = await getGuild(guild);
 
-	if (!guildData || !guildData.farewellEnabled) return;
-	if (!guildData.farewellChannel) return;
+	if (
+		!guildData ||
+		!guildData.farewellEnabled ||
+		!guildData.farewellChannel
+	) {
+		return;
+	}
+
 	const channel = client.channels.cache.get(guildData.farewellChannel);
 
 	// Check to make sure the bot can speak
-	if (!channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
+	if (!channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
+		return;
+	}
 
 	// Check format
 	if (!guildData.farewellFormat || guildData.farewellFormat === 'image') {
@@ -42,7 +51,7 @@ client.on('guildMemberRemove', async (member) => {
 		);
 		ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
-		// Welcome User
+		// Farewell User
 		ctx.fillStyle = '#ffffff';
 		ctx.font = applyText(canvas, `Farewell, ${member.displayName}`);
 		ctx.fillText(
@@ -72,7 +81,7 @@ client.on('guildMemberRemove', async (member) => {
 		);
 
 		// Send message
-		channel.send(attachment);
+		return channel.send(attachment);
 	} else {
 		return channel.send(`Farewell, ${member.displayName}!`);
 	}

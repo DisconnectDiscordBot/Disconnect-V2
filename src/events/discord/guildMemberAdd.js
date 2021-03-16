@@ -1,7 +1,6 @@
 const { client } = require('../../bot');
 const { createCanvas, loadImage } = require('canvas');
-const { MessageAttachment, Message } = require('discord.js');
-const { formatOrdinal } = require('../../tools');
+const { MessageAttachment } = require('discord.js');
 const { get: getGuild } = require('../../models/guilds');
 
 // Manage Text
@@ -18,17 +17,26 @@ const applyText = (canvas, text) => {
 };
 
 client.on('guildMemberAdd', async (member) => {
-	if (!member) return;
+	if (!member) {
+		return;
+	}
 
 	const guild = member.guild;
 	const guildData = await getGuild(guild);
 
-	if (!guildData || !guildData.welcomingEnabled) return;
-	if (!guildData.welcomingChannel) return;
+	if (
+		!guildData ||
+		!guildData.welcomingEnabled ||
+		!guildData.welcomingChannel
+	) {
+		return;
+	}
 	const channel = client.channels.cache.get(guildData.welcomingChannel);
 
 	// Check to make sure the bot can speak
-	if (!channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
+	if (!channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
+		return;
+	}
 
 	// Check format
 	if (!guildData.welcomingFormat || guildData.welcomingFormat === 'image') {
@@ -77,12 +85,10 @@ client.on('guildMemberAdd', async (member) => {
 		);
 
 		// Send message
-		channel.send(attachment);
+		return channel.send(attachment);
 	} else {
 		return channel.send(
-			`Welcome, ${member.displayName} to **${
-				guild.name
-			}**!`,
+			`Welcome, ${member.displayName} to **${guild.name}**!`,
 		);
 	}
 });
