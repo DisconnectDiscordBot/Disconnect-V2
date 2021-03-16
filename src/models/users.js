@@ -2,10 +2,6 @@
 const { log } = require('../utils/logger');
 const { Schema, model } = require('mongoose');
 
-// Cache system
-const { Collection } = require('discord.js');
-const userCache = new Collection();
-
 // Create a schema
 const userSchema = new Schema({
 	id: String,
@@ -21,19 +17,6 @@ module.exports.model = new model('users', userSchema);
 
 // Get a user
 module.exports.get = async (user) => {
-	// Check if there is cached data
-	const cached = userCache.get(user.id);
-
-	// Update usernames
-	if (cached && cached.data.name !== user.username) {
-		cached.data.name = user.username;
-		await cached.data.save();
-	}
-
-	// Return Cached data
-	if (cached && cached.cacheTime < cached.cacheTime + 1.08e7)
-		return cached.data;
-
 	// Get the data
 	const userData = await this.model.findOne({ id: user.id }).catch((err) => {
 		log.database.error(
@@ -54,11 +37,9 @@ module.exports.get = async (user) => {
 		await newUser.save();
 
 		// Cache and return data
-		userCache.set(user.id, { cacheTime: Date.now(), data: newUser });
 		return newUser;
 	}
 
 	// Cache and return data
-	userCache.set(user.id, { cacheTime: Date.now(), data: userData });
 	return userData;
 };
