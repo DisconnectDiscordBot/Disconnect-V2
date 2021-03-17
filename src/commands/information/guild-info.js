@@ -8,9 +8,15 @@ module.exports.run = async ({ client, message }) => {
 	const voiceChannels = [];
 	const categories = [];
 	for (const channel of message.guild.channels.cache) {
-		if (channel[1].type === 'text') textChannels.push(channel);
-		if (channel[1].type === 'voice') voiceChannels.push(channel);
-		if (channel[1].type === 'category') categories.push(channel);
+		if (channel[1].type === 'text') {
+			textChannels.push(channel);
+		}
+		if (channel[1].type === 'voice') {
+			voiceChannels.push(channel);
+		}
+		if (channel[1].type === 'category') {
+			categories.push(channel);
+		}
 	}
 
 	const e = new MessageEmbed()
