@@ -6,7 +6,7 @@ const {
 } = require('../../utils/embed');
 const {
 	checkChannels,
-	model: createNotif,
+	model: CreateNotif,
 } = require('../../models/notifications');
 const { MessageEmbed } = require('discord.js');
 const config = require('../../../assets/config.json');
@@ -68,7 +68,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 
 			// Get Channel
 			const account = await getTwitterUser(args[1]);
-			if (account == 'error') {
+			if (account === 'error') {
 				return message.channel.send(
 					improperUsage(
 						'There was an error while searching for the Twitter account. Please try again later.',
@@ -103,7 +103,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Add the channel to the database
-			const newNotif = new createNotif({
+			const newNotif = new CreateNotif({
 				uuid: account.id_str,
 				guildID: message.guild.id,
 				created: Date.now(),
@@ -143,7 +143,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			const removeAccount = await getTwitterUser(args[1]);
 
 			// Check channel
-			if (removeAccount == 'error') {
+			if (removeAccount === 'error') {
 				return message.channel.send(
 					improperUsage(
 						'There was an error while searching for the Twitter account. Please try again later.',
@@ -168,7 +168,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			for (const twitterAccount of rawChannels) {
-				if (twitterAccount._doc.uuid == removeAccount.id_str) {
+				if (twitterAccount._doc.uuid === removeAccount.id_str) {
 					await twitterAccount.remove();
 				}
 			}
