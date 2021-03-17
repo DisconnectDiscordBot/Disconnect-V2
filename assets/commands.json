@@ -14,6 +14,7 @@
 			"slots"
 		],
 		"images": ["achievement", "animal", "cat", "dog", "food", "fox"],
+		"social": ["youtube-channel", "twitter"],
 		"info": [
 			"bot-info",
 			"command-info",
@@ -31,6 +32,7 @@
 			"set-prefix",
 			"welcomer",
 			"youtube-notification",
+			"twitter-notification",
 			"farewell"
 		],
 		"nsfw": ["porn", "hentai", "r34"],
@@ -323,13 +325,37 @@
 			"aliases": "set-farewell",
 			"category": "mod"
 		},
-		"youtube-notify": {
+		"youtube-notification": {
 			"disc": "Get notifications on YouTube uploads.",
 			"perms": "Manage Guild",
 			"usage": "youtube-notify < option >",
 			"example": "youtube-notify help",
 			"aliases": "yt-notify",
 			"category": "mod"
+		},
+		"twitter-notification": {
+			"disc": "Get notifications on Tweets.",
+			"perms": "Manage Guild",
+			"usage": "twitter-notify < option >",
+			"example": "twitter-notify help",
+			"aliases": "twitter-notification",
+			"category": "mod"
+		},
+
+		"----Social Category": null,
+		"twitter": {
+			"disc": "Get information on a Twitter Account.",
+			"usage": "twitter < screen name >",
+			"example": "twitter DevCytech",
+			"aliases": "twitter-user",
+			"category": "social"
+		},
+		"youtube-channel": {
+			"disc": "Get information on a YouTube Channel.",
+			"usage": "twitter < screen name >",
+			"example": "youtube-channel Cytech",
+			"aliases": "yt-channel",
+			"category": "social"
 		},
 
 		"----NSFW Category": null,
