@@ -9,6 +9,7 @@ const channelSchema = new Schema({
 	guildID: String,
 	channelID: String,
 	created: Date,
+	screenName: String,
 	type: { type: String, default: 'na' },
 });
 
@@ -16,7 +17,7 @@ const channelSchema = new Schema({
 module.exports.model = new model('channels', channelSchema);
 
 // Get links
-module.exports.getChannels = async (type) => {
+module.exports.getNotifications = async (type) => {
 	const data = await this.model.find({ type }).catch((err) => {
 		log.database.error(`Error while searching for channels. ${err}`);
 	});
@@ -35,4 +36,12 @@ module.exports.checkChannels = async (type, guildID, channelID) => {
 				log.database.error(`Error while checking channels: ${err}`);
 		  });
 	return data ? data : null;
+};
+
+// Get all notifications based on UUID
+module.exports.getUUID = async (type, uuid) => {
+	const data = await this.model.find({ type, uuid }).catch((err) => {
+		log.database.error(`Error while searching for uuid channels. ${err}`);
+	});
+	return data.length ? data : [];
 };

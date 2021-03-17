@@ -1,13 +1,13 @@
 // Variables
 const { client } = require('../../bot');
 const request = new (require('rss-parser'))();
-const { getChannels } = require('../../models/notifications');
+const { getNotifications } = require('../../models/notifications');
 const { getLinks, model: addVideo } = require('../../models/links');
 
 // Every 3 minutes check
 setInterval(async () => {
 	const videos = await getLinks('youtube');
-	const channels = await getChannels('youtube');
+	const channels = await getNotifications('youtube');
 
 	for (const channel of channels) {
 		// Get Videos

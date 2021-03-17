@@ -27,7 +27,7 @@ module.exports.getLinks = async (type) => {
 
 	return data.length
 		? data
-				.filter((doc) => Date.parse(doc.created) + 5.4e+6 > Date.now())
+				.filter((doc) => Date.parse(doc.created) + 5.4e6 > Date.now())
 				.map((doc) => doc.url)
 		: [];
 };
