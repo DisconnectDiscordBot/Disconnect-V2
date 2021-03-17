@@ -4,6 +4,15 @@ const { getTimeSince, formatDate } = require('../../tools');
 const { regions } = require('../../../assets/translation.json');
 
 module.exports.run = async ({ client, message }) => {
+	const textChannels = [];
+	const voiceChannels = [];
+	const categories = [];
+	for (const channel of message.guild.channels.cache) {
+		if (channel[1].type === 'text') textChannels.push(channel);
+		if (channel[1].type === 'voice') voiceChannels.push(channel);
+		if (channel[1].type === 'category') categories.push(channel);
+	}
+
 	const e = new MessageEmbed()
 		.setColor(secondary)
 		.setTitle(message.guild.name)
@@ -21,26 +30,16 @@ module.exports.run = async ({ client, message }) => {
 		)
 		.addField(
 			'Channels',
-			`**${client.emojis.cache.get(
-				'795140464541302794',
-			)} 12\n${client.emojis.cache.get(
-				'795139520680165396',
-			)} 64 \n${client.emojis.cache.get('795139520307003424')} 19**`,
+			`**${client.emojis.cache.get('816080871261995008')} ${
+				categories.length
+			} \n${client.emojis.cache.get('816080871081508955')} ${
+				textChannels.length
+			} \n${client.emojis.cache.get('816080871005880341')} ${
+				voiceChannels.length
+			} \n **ALL: **${message.guild.channels.cache.size}**`,
 			true,
 		)
-		.addField(
-			'Members',
-			`Total **${message.guild.memberCount}\n${client.emojis.cache.get(
-				'795142867843809291',
-			)} ${message.guild.members.cache
-				.filter((member) => !member.user.bot)
-				.size.toLocaleString()}\n${client.emojis.cache.get(
-				'795142867974488074',
-			)} ${message.guild.members.cache
-				.filter((member) => member.user.bot)
-				.size.toLocaleString()}**`,
-			true,
-		)
+		.addField('Members', `Total **${message.guild.memberCount}**`, true)
 		.addField(
 			'Misc.',
 			`Roles **${message.guild.roles.cache.size}**\nEmojis **${message.guild.emojis.cache.size}**`,
