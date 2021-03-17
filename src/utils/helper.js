@@ -1,5 +1,5 @@
 const agent = require('superagent');
-const { createEmbed } = require('../../utils/embed');
+const { createEmbed } = require('./embed');
 
 /*
     Command Helper
