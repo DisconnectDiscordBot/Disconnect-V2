@@ -14,7 +14,7 @@ module.exports.run = async ({ args, message }) => {
 
 	// Get YouTube Account
 	const results = await getYouTubeChannel(args.join(' '));
-	if (results == 'error') {
+	if (results === 'error') {
 		return message.channel.send(
 			improperUsage(
 				'There was an error while searching for the YouTube channel. Please try again later.',

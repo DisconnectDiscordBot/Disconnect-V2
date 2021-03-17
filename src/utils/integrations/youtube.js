@@ -11,6 +11,8 @@ module.exports.getYouTubeChannel = async (screenName) => {
 			return 'error';
 		});
 
-	if (!results || !results.body || !results.body.items[0]) return null;
+	if (!results || !results.body || !results.body.items[0]) {
+		return null;
+	}
 	return results.body.items[0];
 };

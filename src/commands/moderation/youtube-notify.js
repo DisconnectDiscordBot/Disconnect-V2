@@ -6,7 +6,7 @@ const {
 } = require('../../utils/embed');
 const {
 	checkChannels,
-	model: createNotif,
+	model: CreateNotif,
 } = require('../../models/notifications');
 const { MessageEmbed } = require('discord.js');
 const config = require('../../../assets/config.json');
@@ -72,7 +72,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 
 			// Get Channel
 			const channel = await getYouTubeChannel(args.slice(1).join(' '));
-			if (channel == 'error') {
+			if (channel === 'error') {
 				return message.channel.send(
 					improperUsage(
 						'There was an error while searching for the YouTube channel. Please try again later.',
@@ -113,7 +113,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Add the channel to the database
-			const newNotif = new createNotif({
+			const newNotif = new CreateNotif({
 				uuid: channelId,
 				guildID: message.guild.id,
 				created: Date.now(),
@@ -155,7 +155,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			const removeChannel = await getYouTubeChannel(args.join(' '));
 
 			// Check channel
-			if (removeChannel == 'error') {
+			if (removeChannel === 'error') {
 				return message.channel.send(
 					improperUsage(
 						'There was an error while searching for the YouTube channel. Please try again later.',
@@ -186,7 +186,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			for (const creator of rawChannels) {
-				if (creator._doc.uuid == removeChannelId) {
+				if (creator._doc.uuid === removeChannelId) {
 					await creator.remove();
 				}
 			}
