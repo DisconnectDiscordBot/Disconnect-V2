@@ -11,7 +11,7 @@ module.exports.run = async ({ message }) => {
 
 	const e = new MessageEmbed().setAuthor('🎰 Slots');
 
-	if (results[0] == results[1] && results[0] == results[2]) {
+	if (results[0] === results[1] && results[0] === results[2]) {
 		e.setDescription(
 			`${message.member} is trying their luck at the slot machine. \n\n${results[0]} ${results[1]} ${results[2]} \n\n AND... THEY HAVE WON!!!  🎉🎉`,
 		);

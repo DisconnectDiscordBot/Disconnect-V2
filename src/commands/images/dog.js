@@ -1,16 +1,7 @@
-const agent = require('superagent');
-const { createEmbed } = require('../../utils/embed');
+const { sendSomeRandomAnimalAPI } = require('../../utils/helper');
 
 module.exports.run = async ({ message }) => {
-	const imageResult = await agent.get('https://some-random-api.ml/img/dog');
-	const factResult = await agent.get('https://some-random-api.ml/facts/dog');
-
-	return message.channel.send(
-		createEmbed({
-			body: factResult.body.fact,
-			image: imageResult.body.link,
-		}),
-	);
+	return await sendSomeRandomAnimalAPI(message, 'dog');
 };
 
 module.exports.config = {

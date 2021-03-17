@@ -1,6 +1,7 @@
 // Variables
 const { client } = require('../bot');
 const log = require('../utils/logger');
+const { connect } = require('../events/external/handleTwitter');
 
 // When the client is logged in
 client.on('ready', async () => {
@@ -19,6 +20,7 @@ client.on('ready', async () => {
 	await fetchEvents();
 
 	// Setup extra client values
+	connect();
 
 	// Tell us the bot has finished loading
 	log.client.info(`${client.user.username} is online and ready.`);

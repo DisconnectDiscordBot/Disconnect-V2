@@ -14,11 +14,14 @@ module.exports.fetchCommands = async (client) => {
 	const commandFiles = await fetchFiles('./src/commands', '.js');
 
 	// Check the command files
-	if (commandFiles == null) return;
-	if (commandFiles.length <= 0)
+	if (commandFiles == null) {
+		return;
+	}
+	if (commandFiles.length <= 0) {
 		return log.system.warn(
 			'There are no commands to load! continuing. . .',
 		);
+	}
 
 	// Load the commands
 	for (const path of commandFiles) {
@@ -26,33 +29,40 @@ module.exports.fetchCommands = async (client) => {
 		const file = require(path);
 
 		// Check the command
-		if (!file || !file.config || !file.run) continue;
+		if (!file || !file.config || !file.run) {
+			continue;
+		}
 
 		// Destructuring the config
 		const { name, aliases, category } = file.config;
 
 		// Check the config
-		if (!name) continue;
+		if (!name) {
+			continue;
+		}
 
 		// Set commands
 		client.commands.set(name, file);
-		if (name.includes('-'))
+		if (name.includes('-')) {
 			client.aliases.set(name.replace(/-/g, ''), file);
+		}
 
 		if (aliases) {
 			// If there are multiple aliases in an array
 			if (typeof aliases == 'object') {
 				for (const alias of aliases) {
 					client.aliases.set(alias, file);
-					if (alias.includes('-'))
+					if (alias.includes('-')) {
 						client.aliases.set(alias.replace(/-/g, ''), file);
+					}
 				}
 			}
 			// If it is a single alias in a string
 			if (typeof aliases == 'string') {
 				client.aliases.set(aliases, file);
-				if (aliases.includes('-'))
+				if (aliases.includes('-')) {
 					client.aliases.set(aliases.replace(/-/g, ''), file);
+				}
 			}
 		}
 
@@ -76,5 +86,7 @@ module.exports.fetchCommands = async (client) => {
 				client.aliases.size > 1 ? 'es' : ''
 			} have been loaded. . .`,
 		);
-	} else return;
+	} else {
+		return null;
+	}
 };

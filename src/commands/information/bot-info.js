@@ -3,7 +3,7 @@ const { formatTimeSince } = require('../../tools');
 const { website, creatorID } = require('../../../assets/config.json');
 const { primary } = require('../../../assets/colors.json');
 
-module.exports.run = async ({ client, message, guildData: guild }) => {
+module.exports.run = async ({ client, message }) => {
 	const e = new MessageEmbed()
 		.setURL(website)
 		.setColor(primary)

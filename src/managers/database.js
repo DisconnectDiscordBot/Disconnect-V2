@@ -1,4 +1,5 @@
 // Normal variables
+const log = require('../utils/logger');
 const { connect } = require('mongoose');
 const { DATABASE_LINK: link } = process.env;
 
@@ -11,7 +12,9 @@ const options = {
 };
 
 // Check link and options
-if (!link || !options) return null;
+if (!link || !options) {
+	return null;
+}
 
 // Connect
-connect(link, options).catch((err) => console.log(err));
+connect(link, options).catch((err) => log.database.error(err));

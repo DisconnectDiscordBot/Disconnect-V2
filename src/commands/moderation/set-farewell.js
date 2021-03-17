@@ -1,8 +1,4 @@
-const {
-	improperUsage,
-	createSuccessEmbed,
-	premiumOnly,
-} = require('../../utils/embed');
+const { improperUsage, createSuccessEmbed } = require('../../utils/embed');
 const { MessageEmbed } = require('discord.js');
 const palette = require('../../../assets/colors.json');
 const config = require('../../../assets/config.json');
@@ -73,7 +69,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 						.replace(/#/g, ''),
 				) ||
 				message.guild.channels.cache.find(
-					(c) => c.name == args.slice(1).join(' '),
+					(c) => c.name === args.slice(1).join(' '),
 				);
 			if (!channel) {
 				return message.channel.send(
@@ -84,9 +80,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Check permissions
-			console.log(
-				channel.permissionsFor(message.guild.me).has('SEND_MESSAGES'),
-			);
 			if (
 				!channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')
 			) {

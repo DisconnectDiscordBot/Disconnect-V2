@@ -2,20 +2,28 @@ const moment = require('moment');
 require('moment-duration-format');
 
 // Get Ordinal
-module.exports.formatOrdinal = (n) => {
-	const s = ['th', 'st', 'nd', 'rd'],
-		v = n % 100;
-	return n + (s[(v - 20) % 10] || s[v] || s[0]);
+module.exports.formatOrdinal = (i) => {
+	const n = i % 10;
+	const x = i % 100;
+
+	if (n === 1 && x !== 11) {
+		return `${i}st`;
+	} else if (n === 2 && x !== 12) {
+		return `${i}nd`;
+	} else if (n === 3 && x !== 13) {
+		return `${i}rd`;
+	} else {
+		return `${i}th`;
+	}
 };
 
 // Get Member
 module.exports.fetchMember = (message, find = '') => {
 	find = find.toLowerCase();
 
-	let result = message.guild.members.cache.get(find);
-
-	if (!result && message.mentions.members)
-		result = message.mentions.members.first();
+	let result =
+		message.guild.members.cache.get(find) ||
+		message.mentions.members.first();
 
 	if (!result && find) {
 		result = message.guild.members.cache.find((user) => {
@@ -26,7 +34,9 @@ module.exports.fetchMember = (message, find = '') => {
 		});
 	}
 
-	if (!result) return null;
+	if (!result) {
+		return find;
+	}
 	return result;
 };
 
@@ -48,23 +58,30 @@ module.exports.getTimeSince = function (date) {
 	const years = moment().diff(date, 'years', false);
 	const months = moment().diff(date, 'months', false) - 12 * years;
 	const days = moment().diff(date, 'days', false) - 365 * years - 30 * months;
+	let timeSince = '';
 
-	if (years !== 0)
-		return months !== 0
-			? `${years} ${years !== 1 ? 'years' : 'year'} and ${months} ${
-					months !== 1 ? 'months' : 'month'
-			  } ago`
-			: `${years} ${years !== 1 ? 'years' : 'year'} ago`;
+	if (years !== 0) {
+		timeSince =
+			months !== 0
+				? `${years} ${years !== 1 ? 'years' : 'year'} and ${months} ${
+						months !== 1 ? 'months' : 'month'
+				  } ago`
+				: `${years} ${years !== 1 ? 'years' : 'year'} ago`;
+	}
 
-	if (months !== 0)
-		return days !== 0
-			? `${months} ${months !== 1 ? 'months' : 'month'} and ${days} ${
-					days !== 1 ? 'days' : 'day'
-			  } ago`
-			: `${months} ${months !== 1 ? 'months' : 'month'} ago`;
+	if (months !== 0) {
+		timeSince =
+			days !== 0
+				? `${months} ${months !== 1 ? 'months' : 'month'} and ${days} ${
+						days !== 1 ? 'days' : 'day'
+				  } ago`
+				: `${months} ${months !== 1 ? 'months' : 'month'} ago`;
+	}
 
 	return `${
-		days == 0
+		timeSince
+			? timeSince
+			: days === 0
 			? 'less than a day'
 			: days !== 1
 			? `${days} days`

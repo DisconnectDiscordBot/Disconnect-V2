@@ -5,11 +5,13 @@ const { createSuccessEmbed, improperUsage } = require('../../utils/embed');
 
 module.exports.run = async ({ message, args }) => {
 	let member;
-	if (args[0]) member = fetchMember(message, args[0]);
+	if (args[0]) {
+		member = fetchMember(message, args[0]);
+	}
 	if (!member || typeof member !== 'object') {
 		return message.channel.send(
 			improperUsage(
-				`Please specify a user you would like to kick. \nIf you do not want to ping them you may use their id.`,
+				'Please specify a user you would like to kick. \nIf you do not want to ping them you may use their id.',
 			),
 		);
 	}
@@ -25,14 +27,14 @@ module.exports.run = async ({ message, args }) => {
 	if (member.user.id === message.author.id) {
 		return message.channel.send(
 			improperUsage(
-				`If you wish to leave the guild, I can not help you.`,
+				'If you wish to leave the guild, I can not help you.',
 			),
 		);
 	}
 
 	if (member.user.id === message.guild.ownerID) {
 		return message.channel.send(
-			improperUsage(`You may not kick the owner of the guild.`),
+			improperUsage('You may not kick the owner of the guild.'),
 		);
 	}
 
@@ -43,7 +45,7 @@ module.exports.run = async ({ message, args }) => {
 			member.roles.highest.rawPosition
 	) {
 		return message.channel.send(
-			improperUsage(`I am unable to kick this member from the guild.`),
+			improperUsage('I am unable to kick this member from the guild.'),
 		);
 	}
 
@@ -53,7 +55,7 @@ module.exports.run = async ({ message, args }) => {
 	) {
 		return message.channel.send(
 			improperUsage(
-				`You can not ban someone with higher permissions than you.`,
+				'You can not ban someone with higher permissions than you.',
 			),
 		);
 	}

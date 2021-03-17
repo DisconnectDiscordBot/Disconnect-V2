@@ -1,6 +1,6 @@
 {
 	"name": "disconnect",
-	"version": "2.1.0",
+	"version": "2.1.2",
 	"description": "Disconnect is an entertainment focused discord bot.",
 	"main": "index.js",
 	"scripts": {
@@ -28,7 +28,11 @@
 		"rss-parser": "^3.11.0",
 		"superagent": "^6.1.0",
 		"tsubaki": "^1.3.9",
+		"twit": "^2.2.11",
 		"winston": "^3.3.3",
 		"xml2js": "^0.4.23"
+	},
+	"devDependencies": {
+		"eslint": "^7.19.0"
 	}
 }

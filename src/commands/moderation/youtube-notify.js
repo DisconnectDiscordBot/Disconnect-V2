@@ -1,4 +1,3 @@
-const agent = require('superagent');
 const log = require('../../utils/logger');
 const {
 	improperUsage,
@@ -7,39 +6,11 @@ const {
 } = require('../../utils/embed');
 const {
 	checkChannels,
-	model: createNotif,
+	model: CreateNotif,
 } = require('../../models/notifications');
 const { MessageEmbed } = require('discord.js');
 const config = require('../../../assets/config.json');
-
-async function searchChannel(message, search) {
-	const channel = await agent
-		.get(
-			`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${search}&key=${process.env.YOUTUBE_KEY}&maxResults=1&type=channel`,
-		)
-		.catch((err) => {
-			message.channel.send(
-				improperUsage(
-					'I could not find the channel your were looking for... Please try again later.',
-				),
-			);
-			log.client.error(
-				`-youtube-notification add- There was an error while looking for a channel \`${search}\`. YouTube Error: \`${err}\``,
-			);
-			return null;
-		});
-
-	if (!channel || !channel.body.items[0]) {
-		message.channel.send(
-			improperUsage(
-				`I was unable to find a channel with the search: ${search}`,
-			),
-		);
-		return null;
-	}
-
-	return channel;
-}
+const { getYouTubeChannel } = require('../../utils/integrations/youtube');
 
 module.exports.run = async ({ message, args, guildData }) => {
 	const rawChannels = await checkChannels('youtube', message.guild.id, null);
@@ -47,7 +18,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 
 	const e = new MessageEmbed()
 		.setTitle('YouTube Notifications')
-		.setColor(`FF0000`)
+		.setColor('FF0000')
 		.setThumbnail('https://i.imgur.com/F1ikCwh.png');
 
 	switch (args[0] ? args[0].toLowerCase() : null) {
@@ -56,13 +27,11 @@ module.exports.run = async ({ message, args, guildData }) => {
 
 			// Get data
 			for (const channel of rawChannels) {
-				const data = await agent.get(
-					`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${channel._doc.uuid}&key=${process.env.YOUTUBE_KEY}&maxResults=1&type=channel`,
-				);
+				const result = await getYouTubeChannel(channel._doc.uuid);
 
-				if (data.body.items[0]) {
+				if (result && result !== 'error') {
 					channels.push(
-						`[${data.body.items[0].snippet.title}](https://www.youtube.com/channel/${data.body.items[0].snippet.channelId})`,
+						`[${result.snippet.title}](https://www.youtube.com/channel/${result.snippet.channelId})`,
 					);
 				} else {
 					channels.push('There was an error finding this channel.');
@@ -102,14 +71,26 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Get Channel
-			const channel = await searchChannel(
-				message,
-				args.slice(1).join(' '),
-			);
-			if (channel == null) return;
+			const channel = await getYouTubeChannel(args.slice(1).join(' '));
+			if (channel === 'error') {
+				return message.channel.send(
+					improperUsage(
+						'There was an error while searching for the YouTube channel. Please try again later.',
+					),
+				);
+			}
+			if (!channel) {
+				return message.channel.send(
+					improperUsage(
+						`I did not find any YouTube channels with the name \`${args
+							.slice(1)
+							.join(' ')}\``,
+					),
+				);
+			}
 
 			// Channel information
-			const channelInfo = channel.body.items[0].snippet;
+			const channelInfo = channel.snippet;
 			const channelId = channelInfo.channelId;
 
 			// Make sure that the guild is not already looking at the channel
@@ -132,7 +113,7 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			// Add the channel to the database
-			const newNotif = new createNotif({
+			const newNotif = new CreateNotif({
 				uuid: channelId,
 				guildID: message.guild.id,
 				created: Date.now(),
@@ -156,13 +137,12 @@ module.exports.run = async ({ message, args, guildData }) => {
 					`I have subscribed to **${channelInfo.channelTitle}**. I will now upload all uploads by them here!`,
 				),
 			);
-			break;
 
 		case 'remove':
 			if (!args[1]) {
 				return message.channel.send(
 					improperUsage(
-						`What channel would you like me to stop notifying you about. Examples below: \n\`${
+						`What channel would you like me to stop notifying you about? Examples below: \n\`${
 							guildData.prefix ? guildData.prefix : config.prefix
 						}youtube-notification remove Cytech\` \n\`${
 							guildData.prefix ? guildData.prefix : config.prefix
@@ -172,10 +152,28 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			args.shift();
-			const removeChannel = await searchChannel(message, args.join(' '));
+			const removeChannel = await getYouTubeChannel(args.join(' '));
+
+			// Check channel
+			if (removeChannel === 'error') {
+				return message.channel.send(
+					improperUsage(
+						'There was an error while searching for the YouTube channel. Please try again later.',
+					),
+				);
+			}
+			if (!removeChannel) {
+				return message.channel.send(
+					improperUsage(
+						`I did not find any YouTube channels with the name \`${args
+							.slice(1)
+							.join(' ')}\``,
+					),
+				);
+			}
 
 			// Channel information
-			const removeChannelInfo = removeChannel.body.items[0].snippet;
+			const removeChannelInfo = removeChannel.snippet;
 			const removeChannelId = removeChannelInfo.channelId;
 
 			// Make sure that the guild is not already looking at the channel
@@ -188,8 +186,9 @@ module.exports.run = async ({ message, args, guildData }) => {
 			}
 
 			for (const creator of rawChannels) {
-				if (creator._doc.uuid == removeChannelId)
+				if (creator._doc.uuid === removeChannelId) {
 					await creator.remove();
+				}
 			}
 
 			return message.channel.send(
@@ -197,7 +196,6 @@ module.exports.run = async ({ message, args, guildData }) => {
 					`I will no longer notify about uploads from **${removeChannelInfo.channelTitle}**`,
 				),
 			);
-			break;
 
 		default:
 		case 'help':
@@ -206,12 +204,11 @@ module.exports.run = async ({ message, args, guildData }) => {
 			);
 
 			return message.channel.send(e);
-			break;
 	}
 };
 
 module.exports.config = {
 	name: 'youtube-notification',
-	aliases: ['youtube-nofity', 'yt-notify'],
+	aliases: ['youtube-notify', 'yt-notify'],
 	permissions: ['MANAGE_GUILD'],
 };

@@ -54,5 +54,15 @@
 			"Fixed the broken emoji",
 			"Made sure bot can speak before running command"
 		]
+	},
+	"2.1.2": {
+		"title": "Code Review + Twitter Notifier",
+		"changes": [
+			"Did my annual self code review",
+			"Cleaned up many files and updated EMCA script and added rating",
+			"Added Twitter notifications",
+			"Fixed guild info channels not working properly",
+			"Added YouTube Channel and Twitter Account Lookup command in Social Category"
+		]
 	}
 }

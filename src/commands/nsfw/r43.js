@@ -1,32 +1,38 @@
 const agent = require('superagent');
 const { promisifyAll } = require('tsubaki');
 const { parseStringAsync } = promisifyAll(require('xml2js'));
-const { createEmbed } = require('../../utils/embed');
+const { createEmbed, improperUsage } = require('../../utils/embed');
 
 async function getFromReddit() {
-	const { body } = await agent
+	const res = await agent
 		.get('https://www.reddit.com/r/rule34.json?sort=top&t=week')
 		.query({ limit: 800 });
 
-	if (!body.data || !body.data.children) return null;
-	if (!body.data.children.length) return null;
+	if (!res.body.data || !res.body.data.children) {
+		return null;
+	}
+	if (!res.body.data.children.length) {
+		return null;
+	}
 
 	const post =
-		body.data.children[
-			Math.floor(Math.random() * body.data.children.length)
+		res.body.data.children[
+			Math.floor(Math.random() * res.body.data.children.length)
 		];
 
 	if (
 		!post.data.url.endsWith('.png') &&
 		!post.data.url.endsWith('.jpg') &&
 		!post.data.url.endsWith('.jpeg')
-	)
+	) {
 		return await getFromReddit();
-	else return post;
+	} else {
+		return post;
+	}
 }
 
 async function getFromR34(search) {
-	const { text } = await agent.get('https://rule34.xxx/index.php').query({
+	const res = await agent.get('https://rule34.xxx/index.php').query({
 		page: 'dapi',
 		s: 'post',
 		q: 'index',
@@ -34,11 +40,18 @@ async function getFromR34(search) {
 		limit: 100,
 	});
 
-	const { posts } = await parseStringAsync(text);
+	const results = await parseStringAsync(res.text);
+	const posts = results.posts;
 
-	if (posts === '0' || !posts) return null;
-	if (posts.post.length === '0' || !posts.post.length || !posts.post)
+	if (
+		posts === '0' ||
+		!posts ||
+		posts.post.length === '0' ||
+		!posts.post.length ||
+		!posts.post
+	) {
 		return null;
+	}
 
 	const post = posts.post[Math.floor(Math.random() * posts.post.length)];
 
@@ -46,9 +59,11 @@ async function getFromR34(search) {
 		!post.$.file_url.endsWith('.png') &&
 		!post.$.file_url.endsWith('.jpg') &&
 		!post.$.file_url.endsWith('.jpeg')
-	)
+	) {
 		return await getFromR34(search);
-	else return post;
+	} else {
+		return post;
+	}
 }
 
 module.exports.run = async ({ message, args }) => {

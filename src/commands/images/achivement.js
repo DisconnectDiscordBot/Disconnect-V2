@@ -1,4 +1,3 @@
-const { createEmbed, improperUsage } = require('../../utils/embed');
 const agent = require('superagent');
 
 module.exports.run = async ({ message, args }) => {

@@ -6,32 +6,41 @@ const { client: bot } = require('../bot');
 const chalk = require('chalk');
 
 // Formats
-const logFormat = printf(({ level, timestamp, message, label }) => {
-	if (!message || !message.length) return '';
-	return `${timestamp} [${label}] ${level} ${message}`;
-});
-const consoleFormat = printf(({ level, timestamp, message, label }) => {
-	if (!message || !message.length) return '';
-
-	// Makeshift send messages to discord
-	if (level === 'error') {
-		bot.guilds.cache
-			.get('713612836961648680')
-			.channels.cache.get('796034828091916329')
-			.send(
-				improperUsage(`[${label}] [${timestamp}] ${level}: ${message}`),
-			);
+const logFormat = printf(({ level, timestamp: time, message, label: text }) => {
+	if (!message || !message.length) {
+		return '';
 	}
-
-	// Colors
-	if (level === 'warn')
-		return `${chalk.yellow(`[${label}] ${level}: ${message}`)}`;
-	if (level === 'error')
-		return `${chalk.red(`[${label}] ${level}: ${message}`)}`;
-
-	// Return non colored messages
-	return `[${label}] ${level}: ${message}`;
+	return `${time} [${level}] ${text} ${message}`;
 });
+
+const consoleFormat = printf(
+	({ level, timestamp: time, message, label: text }) => {
+		if (!message || !message.length) {
+			return '';
+		}
+
+		// Makeshift send messages to discord
+		if (level === 'error') {
+			bot.guilds.cache
+				.get('713612836961648680')
+				.channels.cache.get('796034828091916329')
+				.send(
+					improperUsage(`[${text}] [${time}] ${level}: ${message}`),
+				);
+		}
+
+		// Colors
+		if (level === 'warn') {
+			return `${chalk.yellow(`[${label}] ${level}: ${message}`)}`;
+		}
+		if (level === 'error') {
+			return `${chalk.red(`[${label}] ${level}: ${message}`)}`;
+		}
+
+		// Return non colored messages
+		return `[${text}] ${level}: ${message}`;
+	},
+);
 
 // Logger
 const client = createLogger({

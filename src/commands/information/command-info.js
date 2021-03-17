@@ -1,11 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 const { improperUsage } = require('../../utils/embed');
 const { primary } = require('../../../assets/colors.json');
-const { website } = require('../../../assets/config.json');
 const { commandInfo } = require('../../../assets/commands.json');
 const { categories: translate } = require('../../../assets/translation.json');
 
-module.exports.run = async ({ client, message, guildData: guild, args }) => {
+module.exports.run = async ({ client, message, args }) => {
 	// Get Command
 	if (!args[0]) {
 		return message.channel.send(
@@ -42,11 +41,21 @@ module.exports.run = async ({ client, message, guildData: guild, args }) => {
 		.setTitle(`${translate[info.category]} -> ${command.config.name}`)
 		.setColor(primary);
 
-	if (info.disc) e.setDescription(info.disc);
-	if (info.aliases) e.addField('Aliases', info.aliases, true);
-	if (info.usage) e.addField('Usage', info.usage, true);
-	if (info.example) e.addField('Example', info.example, true);
-	if (info.perms) e.addField('Required Permissions', info.perms, true);
+	if (info.disc) {
+		e.setDescription(info.disc);
+	}
+	if (info.aliases) {
+		e.addField('Aliases', info.aliases, true);
+	}
+	if (info.usage) {
+		e.addField('Usage', info.usage, true);
+	}
+	if (info.example) {
+		e.addField('Example', info.example, true);
+	}
+	if (info.perms) {
+		e.addField('Required Permissions', info.perms, true);
+	}
 
 	return message.channel.send(e);
 };

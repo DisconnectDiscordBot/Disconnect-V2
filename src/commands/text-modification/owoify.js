@@ -1,7 +1,7 @@
 const { createEmbed } = require('../../utils/embed');
 
 function owoify(text) {
-	let faces = ['(・`ω´・)', ';;w;;', 'owo', 'UwU', '>w<', '^w^'];
+	const faces = ['(・`ω´・)', ';;w;;', 'owo', 'UwU', '>w<', '^w^'];
 
 	text = text.replace(/(?:r|l)/g, 'w');
 	text = text.replace(/(?:R|L)/g, 'W');
@@ -10,7 +10,7 @@ function owoify(text) {
 	text = text.replace(/N([AEIOU])/g, 'Ny$1');
 	text = text.replace(/ove/g, 'uv');
 	text = text.replace(
-		/\!+/g,
+		/!+/g,
 		' ' + faces[Math.floor(Math.random() * faces.length)] + ' ',
 	);
 
