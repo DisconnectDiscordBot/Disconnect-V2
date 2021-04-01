@@ -64,5 +64,9 @@
 			"Fixed guild info channels not working properly",
 			"Added YouTube Channel and Twitter Account Lookup command in Social Category"
 		]
+	},
+	"2.2.0": {
+		"title": "Music!",
+		"changes": ["Added Music functionality to Disconnect."]
 	}
 }

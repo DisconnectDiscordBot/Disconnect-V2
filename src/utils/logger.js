@@ -31,10 +31,10 @@ const consoleFormat = printf(
 
 		// Colors
 		if (level === 'warn') {
-			return `${chalk.yellow(`[${label}] ${level}: ${message}`)}`;
+			return `${chalk.yellow(`[${text}] ${level}: ${message}`)}`;
 		}
 		if (level === 'error') {
-			return `${chalk.red(`[${label}] ${level}: ${message}`)}`;
+			return `${chalk.red(`[${text}] ${level}: ${message}`)}`;
 		}
 
 		// Return non colored messages

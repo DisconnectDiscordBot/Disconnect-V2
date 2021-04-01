@@ -21,6 +21,7 @@ client.on('ready', async () => {
 
 	// Setup extra client values
 	connect();
+	client.queue = new Map();
 
 	// Tell us the bot has finished loading
 	log.client.info(`${client.user.username} is online and ready.`);

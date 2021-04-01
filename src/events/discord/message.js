@@ -116,16 +116,59 @@ client.on('message', async (message) => {
 		return;
 	}
 
+	// Check music permissions
+	const queue = client.queue.get(message.guild.id);
+	if (command.config.isMusic) {
+		// Check and make sure user is in a voice channel
+		const channel = message.member.voice.channel;
+		if (!channel) {
+			return message.channel.send(
+				improperUsage(
+					'Please join a voice channel to use this command.',
+				),
+			);
+		}
+
+		// Make sure bot is in a voice channel
+		if (!message.guild.me.voice.channel) {
+			return message.channel.send(
+				improperUsage(
+					'I am not currently playing music in a voice channel.',
+				),
+			);
+		}
+
+		// Make sure the bot is in the same channel as the user
+		if (channel.id !== message.guild.me.voice.channel.id) {
+			return message.channel.send(
+				improperUsage(
+					'Please join the same voice channel as me to use this command.',
+				),
+			);
+		}
+
+		// Check if there is a queue
+		if (!queue) {
+			return message.channel.send(
+				improperUsage(
+					`There is no music playing in this server. Use \`${prefix}play <song name or url>\` to play some music!`,
+				),
+			);
+		}
+	}
+
 	// Run Execute the command
-	command.run({ client, message, args, guildData, userData }).catch((err) => {
-		logger.client.info(err);
-		logger.client.error(
-			`${err.message} While trying to use command ${command.config.name} in command ${message.guild.id}`,
-		);
-		return message.channel.send(
-			improperUsage(
-				'An error has occurred while running the command. Please try again later.',
-			),
-		);
-	});
+	command
+		.run({ client, message, args, guildData, userData, queue })
+		.catch((err) => {
+			logger.client.info(err);
+			logger.client.error(
+				`${err.message} While trying to use command ${command.config.name} in command ${message.guild.id}`,
+			);
+			return message.channel.send(
+				improperUsage(
+					'An error has occurred while running the command. Please try again later.',
+				),
+			);
+		});
 });

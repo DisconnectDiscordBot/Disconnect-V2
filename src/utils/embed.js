@@ -78,3 +78,12 @@ module.exports.premiumOnly = (command, type) => {
 		.setFooter('I am sorry');
 	return e;
 };
+
+// Music embed
+module.exports.musicEmbed = (title, body) => {
+	const e = new MessageEmbed()
+		.setColor(palette.secondary)
+		.setTitle(`🎵  ${title}`)
+		.setDescription(body);
+	return e;
+};

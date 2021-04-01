@@ -13,6 +13,19 @@
 			"shower-thought",
 			"slots"
 		],
+		"music": [
+			"filter",
+			"leave",
+			"loop",
+			"now-playing",
+			"pause",
+			"play",
+			"playlist",
+			"queue",
+			"resume",
+			"skip",
+			"stop"
+		],
 		"images": ["achievement", "animal", "cat", "dog", "food", "fox"],
 		"social": ["youtube-channel", "twitter"],
 		"info": [
@@ -107,6 +120,63 @@
 			"disc": "What does the 8-ball predict?",
 			"aliases": "super-8-ball",
 			"category": "fun"
+		},
+
+		"----Music Category": null,
+		"filters": {
+			"disc": "Add a filter to queue.",
+			"usage": "filter [filter]",
+			"example": "filter bassboost",
+			"aliases": "filters",
+			"category": "music"
+		},
+		"now-playing": {
+			"disc": "Check the currently playing song.",
+			"aliases": "np",
+			"category": "music"
+		},
+		"stop": {
+			"disc": "Stop the queue and leave the voice channel.",
+			"category": "music"
+		},
+		"resume": {
+			"disc": "Resume the music after the bot is paused.",
+			"category": "music"
+		},
+		"pause": {
+			"disc": "Pause the music to go back to listening after a few minutes.",
+			"category": "music"
+		},
+		"leave": {
+			"disc": "Have the bot step out of the voice channel.",
+			"aliases": "disconnect, go-away",
+			"category": "music"
+		},
+		"play": {
+			"disc": "Play a song from YouTube/Spotify/Soundcloud or Discord.",
+			"usage": "play <url or name>",
+			"example": "play slipknot",
+			"aliases": "p",
+			"category": "music"
+		},
+		"play-playlist": {
+			"disc": "Play a playlist from YouTube or Spotify.",
+			"usage": "playlist <url or name>",
+			"example": "playlist chill lofi",
+			"aliases": "pp",
+			"category": "music"
+		},
+		"skip": {
+			"disc": "Skip the rest of the currently playing song.",
+			"category": "music"
+		},
+		"loop": {
+			"disc": "Loop the queue.",
+			"category": "music"
+		},
+		"queue": {
+			"disc": "Check the current song and the next 10 playing.",
+			"category": "music"
 		},
 
 		"----Images Category": null,
