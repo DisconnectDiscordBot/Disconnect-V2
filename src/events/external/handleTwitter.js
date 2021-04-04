@@ -21,6 +21,13 @@ module.exports.twitterClient = twitterClient;
 
 // Connected
 function error(err) {
+	try {
+		if (err.includes('aborted')) {
+			return;
+		}
+	} catch (err) {
+		// Stop the bot from crashing if this is the wrong way
+	}
 	log.client.error('I do not know there was a Twitter Error...');
 	log.client.error(`- ${err}`);
 }
@@ -112,6 +119,7 @@ function connect() {
 			log.database.error(err);
 		});
 }
+
 // Update reloads
 setInterval(() => {
 	if (!state.reload) return;
@@ -121,3 +129,8 @@ setInterval(() => {
 }, 300000);
 
 module.exports.connect = connect;
+
+// Trigger state to change and reload
+module.exports.triggerReload = () => {
+	state.reload = true;
+};

@@ -11,6 +11,7 @@ const {
 const { MessageEmbed } = require('discord.js');
 const config = require('../../../assets/config.json');
 const { getTwitterUser } = require('../../utils/integrations/twitter');
+const { triggerReload } = require('../../events/external/handleTwitter');
 
 module.exports.run = async ({ message, args, guildData }) => {
 	const rawChannels = await checkChannels('twitter', message.guild.id, null);
@@ -123,9 +124,11 @@ module.exports.run = async ({ message, args, guildData }) => {
 				);
 			});
 
+			await triggerReload();
+
 			return message.channel.send(
 				createSuccessEmbed(
-					`I have followed **${account.name} (@${account.screen_name})**. I will now upload all tweets by them here!`,
+					`I have followed **${account.name} (@${account.screen_name})**. I will now upload all tweets by them here! This process may take up to 5 minutes to setup.`,
 				),
 			);
 

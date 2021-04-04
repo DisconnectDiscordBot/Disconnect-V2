@@ -68,5 +68,12 @@
 	"2.2.0": {
 		"title": "Music!",
 		"changes": ["Added Music functionality to Disconnect."]
+	},
+	"2.2.1": {
+		"title": "Music Patches",
+		"changes": [
+			"Fixed 2 major bugs crashing the bot.",
+			"Fixed Twitter notifications not working until bot restart."
+		]
 	}
 }
