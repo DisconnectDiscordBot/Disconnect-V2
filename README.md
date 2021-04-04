@@ -1,5 +1,7 @@
 # Disconnect
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/287e9aa9df254c809554d46fd1af1ba9)](https://app.codacy.com/gh/DevCytech/Disconnect?utm_source=github.com&utm_medium=referral&utm_content=DevCytech/Disconnect&utm_campaign=Badge_Grade_Settings)
+
 Made with love to be the glue to your community. Keep your community together and active!
 
 ## About
