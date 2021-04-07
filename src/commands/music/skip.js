@@ -9,5 +9,5 @@ module.exports.run = async ({ message, queue }) => {
 
 module.exports.config = {
 	name: 'skip',
-	isPlaying: true,
+	isMusic: true,
 };
