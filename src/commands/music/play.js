@@ -151,8 +151,10 @@ module.exports.run = async ({ client, args, message }) => {
 		url.match(/^https?:\/\/(discord\.com)\/(.*)$/gi)
 	) {
 		if (url.endsWith('.mp3')) {
+			log.client.info(url);
 			const name = url.split('/')[url.split('/').length - 1];
-
+			log.client.name(name);
+			
 			// Get Song Info
 			const FileName = name.replace(/[&/\\#,+()$~%'":*?<>{}|_-]/g, '');
 			const FilePath = path.resolve(TempFilesPath, FileName);
