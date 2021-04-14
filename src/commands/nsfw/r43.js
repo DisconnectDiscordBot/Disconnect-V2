@@ -11,7 +11,7 @@ async function getFromReddit() {
 	if (!res.body.data || !res.body.data.children) {
 		return null;
 	}
-	if (!res.body.data.children.length) {
+	if (!res.body.data.children || !res.body.data.children.length) {
 		return null;
 	}
 
@@ -43,13 +43,7 @@ async function getFromR34(search) {
 	const results = await parseStringAsync(res.text);
 	const posts = results.posts;
 
-	if (
-		posts === '0' ||
-		!posts ||
-		posts.post.length === '0' ||
-		!posts.post.length ||
-		!posts.post
-	) {
+	if (!posts || posts === '0' || !posts.post || !posts.post.length) {
 		return null;
 	}
 
@@ -69,7 +63,9 @@ async function getFromR34(search) {
 module.exports.run = async ({ message, args }) => {
 	const search = args.join('_');
 	const result =
-		args.length < 1 ? await getFromReddit() : await getFromR34(search);
+		args && args.length < 1
+			? await getFromReddit()
+			: await getFromR34(search);
 
 	if (result === null) {
 		const res = await getFromReddit();
@@ -91,8 +87,9 @@ module.exports.run = async ({ message, args }) => {
 		return message.channel.send(e);
 	}
 
-	const title = args.length < 1 ? result.data.title : `Result from ${search}`;
-	const image = args.length < 1 ? result.data.url : result.$.file_url;
+	const title =
+		args && args.length < 1 ? result.data.title : `Result from ${search}`;
+	const image = args && args.length < 1 ? result.data.url : result.$.file_url;
 
 	return message.channel.send(
 		createEmbed({
