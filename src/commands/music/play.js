@@ -51,7 +51,14 @@ async function manageQueue(client, message, channel, serverQueue, song) {
 		);
 		return log.client.error(`Unable to join voice channel: ${err}`);
 	});
-	if (!connection) return await channel.leave();
+	if (!connection || !connection.voice) {
+		message.channel.send(
+			improperUsage(
+				'I have had some issues connecting to your voice channel. Please check my permissions and try again later.',
+			),
+		);
+		return await channel.leave();
+	}
 	await connection.voice.setSelfDeaf(true);
 
 	// Set queue
@@ -151,7 +158,16 @@ module.exports.run = async ({ client, args, message }) => {
 		url.match(/^https?:\/\/(discord\.com)\/(.*)$/gi)
 	) {
 		if (url.endsWith('.mp3')) {
-			const name = url.split('/')[url.split('/').length - 1];
+			let name = null;
+			try {
+				name = url.split('/')[url.split('/').length - 1];
+			} catch (err) {
+				return message.channel.send(
+					improperUsage(
+						'I was unable to get the message or channel to get the file.',
+					),
+				);
+			}
 
 			// Get Song Info
 			const FileName = name.replace(/[&/\\#,+()$~%'":*?<>{}|_-]/g, '');
@@ -194,8 +210,17 @@ module.exports.run = async ({ client, args, message }) => {
 			};
 		} else {
 			// Get message and if there are no attachments then return
-			const channelID = url.split('/channels/')[1].split('/')[1];
-			const messageID = url.split('/channels/')[1].split('/')[2];
+			let channelID = null;
+			let messageID = null;
+
+			try {
+				channelID = url.split('/channels/')[1].split('/')[1];
+				messageID = url.split('/channels/')[1].split('/')[2];
+			} catch (err) {
+				return message.channel.send(
+					improperUsage('I was unable to get the file name.'),
+				);
+			}
 
 			if (!channelID || !messageID) {
 				return message.channel.send(
