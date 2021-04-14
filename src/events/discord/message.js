@@ -123,7 +123,7 @@ client.on('message', async (message) => {
 
 	// Check music permissions
 	const queue = client.queue.get(message.guild.id);
-	if (command.config.isMusic) {
+	if (command.config.isPlaying) {
 		// Check and make sure user is in a voice channel
 		const channel = message.member.voice.channel;
 		if (!channel) {

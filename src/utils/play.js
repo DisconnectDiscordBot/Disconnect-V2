@@ -35,7 +35,9 @@ module.exports.play = async (queue, update, refresh) => {
 		queue.textChannel.send(
 			'Leaving the voice channel as queue looks a bit empty...',
 		);
-		queue.textChannel.guild.me.voice.channel.leave();
+		if (queue.textChannel.guild.me.voice.channel) {
+			queue.textChannel.guild.me.voice.channel.leave();
+		}
 		return client.queue.delete(queue.textChannel.guild.id);
 	}
 
@@ -45,16 +47,37 @@ module.exports.play = async (queue, update, refresh) => {
 
 	// Setup stream
 	if (song.isFile) {
+		if (!existsSync(song.file)) {
+			queue.songs.shift();
+			this.play(queue);
+			return queue.textChannel.send(
+				improperUsage(
+					`I was unable to find the song titled ${song.title}.mp3`,
+				),
+			);
+		}
+
 		// Manage Files
-		if (!existsSync(song.file)) return;
-		stream = createReadStream(`./temp/${song.title}.mp3`);
-		streamType = 'unknown';
+		try {
+			stream = createReadStream(`./temp/${song.title}.mp3`);
+			streamType = 'unknown';
+		} catch (err) {
+			queue.songs.shift();
+			this.play(queue);
+			log.client.error(err);
+			return queue.textChannel.send(
+				improperUsage(
+					`An unexpected error has occurred.\nPossible type \`${err}\``,
+				),
+			);
+		}
 	} else if (song.url.includes('youtube.com')) {
 		// Manage YouTube player
 		if (song.isLive) {
 			try {
 				stream = await YouTubePlayer(song.url, {
 					quality: 'highestaudio',
+					filter: 'audioonly',
 					highWaterMark: 1 << 25,
 					type: streamType,
 					seek: undefined,
