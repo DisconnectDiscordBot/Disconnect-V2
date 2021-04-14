@@ -11,6 +11,11 @@ client.on('message', async (message) => {
 		return;
 	}
 
+	// Muted servers
+	if (message.guild.id === '722704869835669554') {
+		return;
+	}
+
 	// Pre command permission checks
 	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) {
 		return;
