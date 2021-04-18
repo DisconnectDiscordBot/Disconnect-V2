@@ -3,7 +3,7 @@ const { client } = require('../../bot');
 const log = require('../../utils/logger');
 
 // Only run this script if this is on a production client
-if (client.isProduction) return;
+if (!client.isProduction) return;
 
 // Send a post request to update bot's stats
 setInterval(async () => {
