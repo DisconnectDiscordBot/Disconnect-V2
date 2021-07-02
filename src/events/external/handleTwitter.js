@@ -22,7 +22,7 @@ module.exports.twitterClient = twitterClient;
 // Connected
 function error(err) {
 	try {
-		if (err.includes('aborted')) {
+		if (err.message.includes('aborted') && !state.reload) {
 			return;
 		}
 	} catch (err) {

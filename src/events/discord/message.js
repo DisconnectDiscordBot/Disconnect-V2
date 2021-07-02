@@ -166,7 +166,7 @@ client.on('message', async (message) => {
 	command
 		.run({ client, message, args, guildData, userData, queue })
 		.catch((err) => {
-			logger.client.info(err);
+			logger.client.info(err.stack);
 			logger.client.error(
 				`${err.message} While trying to use command ${command.config.name} in command ${message.guild.id}`,
 			);

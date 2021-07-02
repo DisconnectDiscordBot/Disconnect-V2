@@ -12,13 +12,24 @@ module.exports.run = async ({ args, message }) => {
 	}
 
 	// Get Twitter Account
-	const results = await getTwitterUser(args.join(''));
-	if (!results || typeof results !== 'object') {
+	let results = null;
+	try {
+		results = await getTwitterUser(args.join(''));
+		if (!results || typeof results !== 'object') {
+			return message.channel.send(
+				improperUsage(
+					`I was unable to find a Twitter account named \`${args.join(
+						'',
+					)}\`. Please make sure you are looking up their Twitter handle not their display name.`,
+				),
+			);
+		}
+	} catch (err) {
 		return message.channel.send(
 			improperUsage(
-				`I was unable to find a twitter account named \`${args.join(
+				`There was an error trying to find the Twitter account named \`${args.join(
 					'',
-				)}\`. Please make sure you are looking up their twitter handle not their display name.`,
+				)}\`. Please make sure you are looking up their Twitter handle not their display name.`,
 			),
 		);
 	}
@@ -29,13 +40,16 @@ module.exports.run = async ({ args, message }) => {
 		.setTitle(`${results.name} (@${results.screen_name})`)
 		.setURL(`https://twitter.com/${results.screen_name}`)
 		.setDescription(results.description)
-		.addField('Location', results.location)
-		.addField('Following', results.friends_count, true)
-		.addField('Followers', results.followers_count, true)
+		.addField(
+			'Location',
+			results.location ? results.location : 'No Location Set',
+		)
+		.addField('Following', results.friends_count.toLocaleString(), true)
+		.addField('Followers', results.followers_count.toLocaleString(), true)
 		.addField('_ _', '_ _', true)
-		.addField('Tweets', results.statuses_count, true)
-		.addField('Likes', results.favourites_count, true)
-		.addField('Lists', results.listed_count, true)
+		.addField('Tweets', results.statuses_count.toLocaleString(), true)
+		.addField('Likes', results.favourites_count.toLocaleString(), true)
+		.addField('Lists', results.listed_count.toLocaleString(), true)
 		.setFooter(
 			`${results.id_str} • Account Created: ${results.created_at
 				.split(' ')

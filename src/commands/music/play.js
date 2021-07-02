@@ -311,7 +311,7 @@ module.exports.run = async ({ client, args, message }) => {
 	) {
 		// Manage youtube links
 		songInfo = await ytdl.getInfo(url).catch(log.client.error);
-		if (!songInfo) {
+		if (!songInfo || !songInfo.videoDetails) {
 			return message.channel.send(
 				improperUsage('I was unable to find this song on YouTube.'),
 			);
@@ -321,9 +321,8 @@ module.exports.run = async ({ client, args, message }) => {
 			id: songInfo.videoDetails.videoId,
 			title: songInfo.videoDetails.title,
 			url: songInfo.videoDetails.video_url,
-			img:
-				songInfo.player_response.videoDetails.thumbnail.thumbnails[0]
-					.url,
+			img: songInfo.player_response.videoDetails.thumbnail.thumbnails[0]
+				.url,
 			duration: songInfo.videoDetails.lengthSeconds,
 			ago: songInfo.videoDetails.publishDate,
 			views: String(songInfo.videoDetails.viewCount).padStart(10, ' '),

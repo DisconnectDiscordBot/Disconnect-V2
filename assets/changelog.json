@@ -75,5 +75,19 @@
 			"Fixed 2 major bugs crashing the bot.",
 			"Fixed Twitter notifications not working until bot restart."
 		]
+	},
+	"2.2.2": {
+		"title": "Music Patches",
+		"changes": ["Fixed issue where music was not playing."]
+	},
+	"2.2.3": {
+		"title": "Misc Patches",
+		"changes": [
+			"Fixed Rock Paper Scissors command.",
+			"Fixed undefined success emoji.",
+			"Fixed some youtube links not working and erroring out.",
+			"Fixed twitter spamming issue, backend side.",
+			"Twitter command no longer errors out and numbers are now localized with commas"
+		]
 	}
 }

@@ -3,13 +3,13 @@ const { secondary } = require('../../../assets/colors.json');
 
 module.exports.run = async ({ client, message, args }) => {
 	const symbols = [
-		client.emojis.cache.get('795378188875464715'),
+		client.emojis.cache.get('860359165599809567'),
 		':paper:',
 		':scissors:',
 	];
 
 	const translateSymbols = {
-		rock: client.emojis.cache.get('795378188875464715'),
+		rock: client.emojis.cache.get('860359165599809567'),
 		paper: ':paper:',
 		scissors: ':scissors:',
 	};
@@ -54,7 +54,9 @@ module.exports.run = async ({ client, message, args }) => {
 			return msg.edit(e);
 		});
 
-		collector.on('end');
+		collector.on('end', () => {
+			// Nothing
+		});
 	}
 
 	if (choice) {

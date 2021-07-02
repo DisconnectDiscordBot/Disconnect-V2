@@ -1,6 +1,6 @@
 {
 	"name": "disconnect",
-	"version": "2.2.2",
+	"version": "2.2.3",
 	"description": "Disconnect is an entertainment focused discord bot.",
 	"main": "index.js",
 	"scripts": {
@@ -16,7 +16,7 @@
 	"bugs": {
 		"url": "https://github.com/DevCytech/Disconnect/issues"
 	},
-	"homepage": "https://github.com/DevCytech/Disconnect#readme",
+	"homepage": "https://disconnectbot.com/",
 	"dependencies": {
 		"@ksoft/api": "^3.1.9",
 		"canvas": "^2.7.0",

@@ -49,7 +49,7 @@ module.exports.createSuccessEmbed = (body) => {
 	const e = new MessageEmbed()
 		.setColor(palette.success)
 		.setDescription(
-			`${client.emojis.cache.get('816080871110082560')} ${body}`,
+			`${client.emojis.cache.get('860358634381901905')} ${body}`,
 		);
 	return e;
 };
